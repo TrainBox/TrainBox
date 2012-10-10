@@ -6,9 +6,9 @@ public class Carriage implements Train {
 	private Train mNext;
 	
 	/**
-	 * Create a new train based on 'next', setting a new carriage in front with a specified cargo.
-	 * @param cargo TODO
-	 * @param next TODO
+	 * Create a new train linked to an existing train.
+	 * @param cargo The number on this train.
+	 * @param next The next train.
 	 */
 	public Carriage(int cargo, Train next) {
 		mCargo = cargo;
