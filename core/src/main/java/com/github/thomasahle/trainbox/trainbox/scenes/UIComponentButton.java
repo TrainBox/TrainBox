@@ -59,6 +59,7 @@ public class UIComponentButton implements ToolListener, Pointer.Listener {
 		MAP.put(UIToken.FLIP, assets().getImage("images/pngs/flipComponentButtonImage.png"));
 		MAP.put(UIToken.CAT, assets().getImage("images/pngs/concatComponentButtonImage.png"));
 		MAP.put(UIToken.MERG, assets().getImage("images/pngs/splitComponentButtonImage.png"));
+		MAP.put(UIToken.DEL, assets().getImage("images/pngs/deleteButton.png"));
 	}};
 	
 	private static final Map<UIToken, Image> MAPsel = new HashMap<UIComponentFactory.UIToken, Image>();{{
@@ -67,6 +68,7 @@ public class UIComponentButton implements ToolListener, Pointer.Listener {
 		MAP.put(UIToken.FLIP, assets().getImage("images/pngs/flipComponentButtonImagePressed.png"));
 		MAP.put(UIToken.CAT, assets().getImage("images/pngs/concatComponentButtonImagePressed.png"));
 		MAP.put(UIToken.MERG, assets().getImage("images/pngs/splitComponentButtonImagePressed.png"));
+		MAP.put(UIToken.DEL, assets().getImage("images/pngs/flipComponent.png"));
 	}};
 	
 	private static final Image mDisabledImage = graphics().createImage(1, 1);
