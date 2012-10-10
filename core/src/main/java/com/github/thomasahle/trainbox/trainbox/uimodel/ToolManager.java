@@ -7,46 +7,60 @@ import com.github.thomasahle.trainbox.trainbox.scenes.ToolListener;
 import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponentFactory.UIToken;
 
 public class ToolManager {
-	
+
+	/** When overrideTool != null, it is used as the current tool. */
+	UIToken overrideTool;
 	UIToken currentTool;
 	List<ToolListener> list;
-	
+
 	public ToolManager() {
 		list = new ArrayList<ToolListener>();
 	}
-	
-	public void add(ToolListener listener){
+
+	public void add(ToolListener listener) {
 		list.add(listener);
 	}
-	
-	public void setTool(UIToken tool){
+
+	public void overrideTool(UIToken tool) {
+		overrideTool = tool;
+		notifySelect();
+	}
+
+	public void setTool(UIToken tool) {
 		currentTool = tool;
 		notifySelect();
 	}
-	
-	public void unselect(){
+
+	public void stopOverriding() {
+		overrideTool = null;
+		notifySelect();
+	}
+
+	public void unselect() {
 		currentTool = null;
 		notifyUnselect();
 	}
-	
-	public void notifySelect(){
-		for(ToolListener lis : list){
-			lis.toolSelected(currentTool);
+
+	public void notifySelect() {
+		for (ToolListener lis : list) {
+			lis.toolSelected(getCurrentTool());
 		}
 	}
-	
-	public void notifyUnselect(){
-		for(ToolListener lis : list){
-			lis.toolsUnselected();		
+
+	public void notifyUnselect() {
+		for (ToolListener lis : list) {
+			lis.toolsUnselected();
 		}
 	}
 
 	public UIToken getCurrentTool() {
+		if (overrideTool != null)
+			return overrideTool;
 		return currentTool;
 	}
 
 	public boolean isSelected() {
-		return currentTool != null;
+		return getCurrentTool() != null;
 	}
-		
+
 }

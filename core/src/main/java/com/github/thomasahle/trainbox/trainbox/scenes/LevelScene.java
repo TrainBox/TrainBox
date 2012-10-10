@@ -63,7 +63,6 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 	private float scrollTargetX = 0;
 	private float scrollTargetY = 0;
 	private boolean autoScroll = true;
-	private boolean deleting = false;
 	private boolean mEditable = true; // called k to avoid editing directly
 
 	public LevelScene(TrainBox trainBox, Level level) {
@@ -468,12 +467,11 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 		if (isEditable() && toolMan.isSelected()) {
 
 			UIToken tool = toolMan.getCurrentTool();
+			Point p = new Point(event.localX(), event.localY());
 
 			if (tool == UIToken.DEL) {
-				Point p = new Point(event.localX(), event.localY());
 				didDeleteSomething = mLevel.deleteChildAt(p);
 			} else {
-				Point p = new Point(event.localX(), event.localY());
 				didInsertSomething = mLevel
 						.insertChildAt(UIComponentFactory.fromTok(toolMan
 								.getCurrentTool()), p);
@@ -605,7 +603,7 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 			toolMan.unselect();
 		}
 		if (event.key() == Key.CONTROL) {
-			deleting = true;
+			toolMan.overrideTool(UIToken.DEL);
 		}
 		if (event.key() == Key.ESCAPE) {// toggle pallet visibility
 			mPallet.setVisible(!mPallet.isVisible());
@@ -619,7 +617,7 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 	@Override
 	public void onKeyUp(playn.core.Keyboard.Event event) {
 		if (event.key() == Key.CONTROL) {
-			deleting = false;
+			toolMan.stopOverriding();
 		}
 	}
 

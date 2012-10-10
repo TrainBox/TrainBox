@@ -68,7 +68,7 @@ public class UIComponentButton implements ToolListener, Pointer.Listener {
 		MAP.put(UIToken.FLIP, assets().getImage("images/pngs/flipComponentButtonImagePressed.png"));
 		MAP.put(UIToken.CAT, assets().getImage("images/pngs/concatComponentButtonImagePressed.png"));
 		MAP.put(UIToken.MERG, assets().getImage("images/pngs/splitComponentButtonImagePressed.png"));
-		MAP.put(UIToken.DEL, assets().getImage("images/pngs/flipComponent.png"));
+		MAP.put(UIToken.DEL, assets().getImage("images/pngs/deleteButton.png"));
 	}};
 	
 	private static final Image mDisabledImage = graphics().createImage(1, 1);
