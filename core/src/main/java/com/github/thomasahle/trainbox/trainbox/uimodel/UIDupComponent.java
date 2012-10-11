@@ -2,16 +2,14 @@ package com.github.thomasahle.trainbox.trainbox.uimodel;
 
 import static playn.core.PlayN.assets;
 import static playn.core.PlayN.graphics;
-import static playn.core.PlayN.log;
 
 import java.util.Queue;
 
-import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
-
-import playn.core.CanvasImage;
 import playn.core.Image;
 import playn.core.Layer;
 import pythagoras.f.Dimension;
+
+import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
 
 public class UIDupComponent extends BlackBoxComponent{
 

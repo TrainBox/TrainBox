@@ -1,7 +1,7 @@
 package com.github.thomasahle.trainbox.trainbox.uimodel;
 
-import static playn.core.PlayN.log;
 import static playn.core.PlayN.graphics;
+import static playn.core.PlayN.log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Queue;
 
 import playn.core.CanvasImage;
-import playn.core.ImageLayer;
 import playn.core.Layer;
 import pythagoras.f.Dimension;
 import pythagoras.f.Point;

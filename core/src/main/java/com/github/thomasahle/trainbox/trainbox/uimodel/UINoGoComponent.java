@@ -2,18 +2,14 @@ package com.github.thomasahle.trainbox.trainbox.uimodel;
 
 import static playn.core.PlayN.graphics;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
-import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
-
-import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.Layer;
-import playn.core.Path;
 import pythagoras.f.Dimension;
+
+import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
 
 public class UINoGoComponent extends AbstractComponent implements UIComponent, TrainTaker {
 

@@ -4,6 +4,7 @@ import static playn.core.PlayN.assets;
 import static playn.core.PlayN.graphics;
 import playn.core.AssetWatcher;
 import playn.core.Game;
+import playn.core.Platform.Type;
 import playn.core.PlayN;
 
 import com.github.thomasahle.trainbox.trainbox.model.Level;
@@ -33,7 +34,7 @@ public class TrainBox implements Game{
 	public void init() {
 		
 		setScene(new LoadingScene(this));
-		if (PlayN.platformType() == PlayN.platformType().ANDROID){
+		if (PlayN.platformType() == Type.ANDROID){
 			graphics().setSize(graphics().screenWidth(), graphics().screenHeight());
 			// Keep the same aspect ratio.
 			float sx = graphics().screenWidth() / (float) WIDTH;

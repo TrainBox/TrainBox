@@ -2,7 +2,6 @@ package com.github.thomasahle.trainbox.trainbox.scenes;
 
 import static playn.core.PlayN.assets;
 import static playn.core.PlayN.graphics;
-import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.Font;
 import playn.core.GroupLayer;

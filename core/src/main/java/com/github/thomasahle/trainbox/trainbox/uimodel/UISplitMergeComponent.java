@@ -5,12 +5,10 @@ import static playn.core.PlayN.log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import playn.core.CanvasImage;
@@ -20,7 +18,6 @@ import playn.core.Layer;
 import pythagoras.f.Dimension;
 import pythagoras.f.Point;
 
-import com.github.thomasahle.trainbox.trainbox.model.Train;
 import com.github.thomasahle.trainbox.trainbox.util.QuadPath;
 
 // It's expected that this deadlocks when the output is waiting for the input.
@@ -317,20 +314,20 @@ public class UISplitMergeComponent extends AbstractComposite {
 			if (served.contains(train)) {
 				for (UICarriage car : train.getCarriages()) {
 					float carLeft = car.getPosition().x + trainLeft - compLeft;
-					float carRight = carLeft + car.WIDTH;
+					float carRight = carLeft + UICarriage.WIDTH;
 					float tCenter = path.calculateT((carRight+carLeft)/2.f);
-					tCenter = Math.min(tCenter, tBorder - car.WIDTH/2.f);
+					tCenter = Math.min(tCenter, tBorder - UICarriage.WIDTH/2.f);
 					if (carLeft < compRight) {
 						float[] slope = path.evaluateSlope(tCenter);
 						float[] pos = path.evaluate(tCenter);
-						pos[0] += compLeft - trainLeft - car.WIDTH/2.f;
+						pos[0] += compLeft - trainLeft - UICarriage.WIDTH/2.f;
 						pos[1] += getDeepPosition().y - (train.getPosition().y + train.getSize().height/2.f);
 						//car.setRotation(1,0);
 						//pos[0] = Math.max(pos[0], carLeft - trainLeft);
 						car.setPosition(new Point(pos[0], pos[1]));
 						car.setRotation(slope[0], slope[1]);
 					}
-					tBorder = tCenter - car.WIDTH/2.f;
+					tBorder = tCenter - UICarriage.WIDTH/2.f;
 				}
 				continue;
 			}
@@ -338,29 +335,29 @@ public class UISplitMergeComponent extends AbstractComposite {
 			// Main move carriages part
 			for (UICarriage car : train.getCarriages()) {
 				float carLeft = car.getPosition().x + trainLeft - compLeft;
-				float carRight = carLeft + car.WIDTH;
+				float carRight = carLeft + UICarriage.WIDTH;
 				float tCenter = path.calculateT((carRight+carLeft)/2.f);
-				tCenter = Math.min(tBorder - car.WIDTH/2.f, tCenter + train.getSpeed()*delta);
+				tCenter = Math.min(tBorder - UICarriage.WIDTH/2.f, tCenter + train.getSpeed()*delta);
 				
 				if (carRight >= 0 || !car.touched()) {
 					float[] slope = path.evaluateSlope(tCenter);
 					float[] pos = path.evaluate(tCenter);
-					pos[0] += compLeft - trainLeft - car.WIDTH/2.f;
+					pos[0] += compLeft - trainLeft - UICarriage.WIDTH/2.f;
 					pos[1] += getDeepPosition().y - (train.getPosition().y + train.getSize().height/2.f);
 					car.setPosition(new Point(pos[0], pos[1]));
 					car.setRotation(slope[0], slope[1]);
 				}
-				tBorder = tCenter - car.WIDTH/2.f;
+				tBorder = tCenter - UICarriage.WIDTH/2.f;
 			}
 			
 			// Updating the position of the train
 			UICarriage first = train.getCarriages().get(0);
-			float newRight = trainLeft + first.getPosition().x + first.WIDTH;
+			float newRight = trainLeft + first.getPosition().x + UICarriage.WIDTH;
 			float newLeft = newRight - train.getSize().width;
 			train.setPosition(new Point(newLeft, train.getPosition().y));
 			for (UICarriage car : train.getCarriages()) {
 				float carLeft = car.getPosition().x + trainLeft - compLeft;
-				float carRight = carLeft + car.WIDTH;
+				float carRight = carLeft + UICarriage.WIDTH;
 				if (carRight >= 0 || !car.touched()) {
 					car.setPosition(new Point(car.getPosition().x+trainLeft-newLeft, car.getPosition().y));
 				}

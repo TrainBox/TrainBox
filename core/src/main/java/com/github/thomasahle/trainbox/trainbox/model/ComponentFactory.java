@@ -2,9 +2,9 @@ package com.github.thomasahle.trainbox.trainbox.model;
 
 import static playn.core.PlayN.log;
 
-import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;

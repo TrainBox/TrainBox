@@ -9,7 +9,6 @@ import java.util.List;
 
 import playn.core.GroupLayer;
 import playn.core.Layer;
-import playn.core.Layer.HitTester;
 import playn.core.PlayN;
 import pythagoras.f.Dimension;
 import pythagoras.f.Point;

@@ -2,7 +2,6 @@ package com.github.thomasahle.trainbox.trainbox.uimodel;
 
 import java.util.List;
 
-import playn.core.Image;
 import playn.core.Layer;
 import pythagoras.f.Point;
 

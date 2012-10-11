@@ -12,7 +12,6 @@ import playn.core.GroupLayer;
 import playn.core.Image;
 import playn.core.ImageLayer;
 import playn.core.Pointer;
-import playn.core.Pointer.Event;
 import pythagoras.f.Point;
 
 import com.github.thomasahle.trainbox.trainbox.core.TrainBox;
@@ -136,7 +135,7 @@ public class DemoScene implements Scene, Pointer.Listener {
         demoLayer.add(backButtonImageLayer);
 		backButtonImageLayer.setTranslation(20, 520);
 		backButtonImageLayer.setVisible(false);
-		backButtonImageLayer.addListener(new Pointer.Listener() {
+		backButtonImageLayer.addListener(new Pointer.Adapter() {
 
 			@Override
 			public void onPointerStart(Pointer.Event event) {
@@ -147,18 +146,6 @@ public class DemoScene implements Scene, Pointer.Listener {
 				if ((currentDemoIndex - 1) == 0)
 					backButtonImageLayer.setVisible(false);
 				currentDemoIndex = currentDemoIndex - 1;
-			}
-
-			@Override
-			public void onPointerEnd(Event event) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onPointerDrag(Event event) {
-				// TODO Auto-generated method stub
-
 			}
 
 		});
@@ -184,18 +171,6 @@ public class DemoScene implements Scene, Pointer.Listener {
 				currentDemoIndex = currentDemoIndex + 1;
 
 			}
-
-			@Override
-			public void onPointerEnd(Event event) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onPointerDrag(Event event) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 
 		final Image doneButtonImage = assets().getImage("images/pngs/doneButton.png");
@@ -203,7 +178,7 @@ public class DemoScene implements Scene, Pointer.Listener {
         demoLayer.add(doneButtonImageLayer);
 		doneButtonImageLayer.setTranslation(680, 520);
 		doneButtonImageLayer.setVisible(false);
-		doneButtonImageLayer.addListener(new Pointer.Listener() {
+		doneButtonImageLayer.addListener(new Pointer.Adapter() {
 
 			@Override
 			public void onPointerStart(Pointer.Event event) {
@@ -217,18 +192,6 @@ public class DemoScene implements Scene, Pointer.Listener {
 
 				trainBox.setScene(trainBox.getStartScene());
 
-			}
-
-			@Override
-			public void onPointerEnd(Event event) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onPointerDrag(Event event) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 

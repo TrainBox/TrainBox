@@ -1,7 +1,5 @@
 package com.github.thomasahle.trainbox.trainbox.model;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +9,6 @@ import pythagoras.f.Point;
 
 import com.github.thomasahle.trainbox.trainbox.uimodel.TrainTaker;
 import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponent;
-import com.github.thomasahle.trainbox.trainbox.uimodel.UIHorizontalComponent;
 import com.github.thomasahle.trainbox.trainbox.uimodel.UITrain;
 
 public class UIComponentTest {

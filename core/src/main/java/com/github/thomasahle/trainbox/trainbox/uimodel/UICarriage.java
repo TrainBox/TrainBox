@@ -1,6 +1,5 @@
 package com.github.thomasahle.trainbox.trainbox.uimodel;
 
-import static playn.core.PlayN.log;
 import static playn.core.PlayN.assets;
 import static playn.core.PlayN.graphics;
 import playn.core.CanvasImage;

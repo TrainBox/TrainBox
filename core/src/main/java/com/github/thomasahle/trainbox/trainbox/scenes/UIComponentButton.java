@@ -14,7 +14,6 @@ import playn.core.ImageLayer;
 import playn.core.Layer;
 import playn.core.Pointer;
 import playn.core.Pointer.Event;
-import playn.core.Pointer.Listener;
 import pythagoras.f.Dimension;
 import pythagoras.f.Point;
 

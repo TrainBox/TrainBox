@@ -6,23 +6,21 @@ import static playn.core.PlayN.graphics;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.thomasahle.trainbox.trainbox.uimodel.ToolManager;
-import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponent;
-import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponentFactory;
-import com.github.thomasahle.trainbox.trainbox.uimodel.UIComposite;
-import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponentFactory.UIToken;
-
 import playn.core.Canvas.LineJoin;
 import playn.core.CanvasImage;
 import playn.core.GroupLayer;
 import playn.core.Image;
-import playn.core.ImageLayer;
 import playn.core.Layer;
 import playn.core.Pointer.Event;
 import playn.core.Pointer.Listener;
 import pythagoras.f.Dimension;
 import pythagoras.f.Point;
-import sun.tools.tree.NewArrayExpression;
+
+import com.github.thomasahle.trainbox.trainbox.uimodel.ToolManager;
+import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponent;
+import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponentFactory;
+import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponentFactory.UIToken;
+import com.github.thomasahle.trainbox.trainbox.uimodel.UIComposite;
 
 
 public class EdButton implements ToolListener{

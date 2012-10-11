@@ -1,13 +1,9 @@
 package com.github.thomasahle.trainbox.trainbox.uimodel;
 
-import static playn.core.PlayN.graphics;
-import static playn.core.PlayN.log;
 import static playn.core.PlayN.assets;
-
-
+import static playn.core.PlayN.graphics;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 

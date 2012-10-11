@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
-
-import playn.core.CanvasImage;
 import playn.core.Image;
 import playn.core.Layer;
 import pythagoras.f.Dimension;
+
+import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
 
 public class UIFlipComponent extends BlackBoxComponent {
 

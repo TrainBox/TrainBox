@@ -11,7 +11,6 @@ import java.util.List;
 import playn.core.CanvasImage;
 import playn.core.Image;
 import playn.core.Layer;
-import playn.core.PlayN;
 import pythagoras.f.Dimension;
 import pythagoras.f.Point;
 

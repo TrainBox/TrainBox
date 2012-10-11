@@ -1,22 +1,15 @@
 package com.github.thomasahle.trainbox.trainbox.scenes;
 
 import static playn.core.PlayN.graphics;
-import static playn.core.PlayN.log;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.prefs.BackingStoreException;
-
-import com.github.thomasahle.trainbox.trainbox.uimodel.UIComponentFactory.UIToken;
 
 import playn.core.CanvasImage;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
 import playn.core.Layer;
 import playn.core.Layer.HitTester;
-import playn.core.Pointer.Event;
-import playn.core.Pointer.Listener;
 import pythagoras.f.Dimension;
 import pythagoras.f.Point;
 

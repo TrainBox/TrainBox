@@ -7,7 +7,6 @@ import static playn.core.PlayN.log;
 
 import java.util.Arrays;
 
-import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.Font;
 import playn.core.GroupLayer;
@@ -21,7 +20,6 @@ import playn.core.Pointer;
 import playn.core.Pointer.Event;
 import playn.core.TextFormat;
 import playn.core.TextFormat.Alignment;
-import pythagoras.f.FloatMath;
 import pythagoras.f.Point;
 
 import com.github.thomasahle.trainbox.trainbox.core.TrainBox;
