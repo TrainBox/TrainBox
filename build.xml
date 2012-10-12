@@ -2,7 +2,7 @@
 <project name="trainbox" default="run-java" xmlns:artifact="urn:maven-artifact-ant">
   <!-- Define your project information here -->
   <property name="java.classname" value="com.github.trainbox.java.TrainBoxJava"/>
-  <property name="html.classname" value="com.github.trainbox.html.TrainBoxHtml"/>
+  <property name="html.classname" value="com.github.trainbox.TrainBox"/>
   <property name="html.index" value="TrainBox.html"/>
 
   <!-- Everything below here shouldn't need to be modified -->
