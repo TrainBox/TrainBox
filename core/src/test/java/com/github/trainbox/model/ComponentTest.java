@@ -7,17 +7,17 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.github.trainbox.model.BoxComponent;
-import com.github.trainbox.model.Carriage;
-import com.github.trainbox.model.Component;
-import com.github.trainbox.model.ComponentFactory;
-import com.github.trainbox.model.ConcatComponent;
-import com.github.trainbox.model.FlipComponent;
-import com.github.trainbox.model.MergeComponent;
-import com.github.trainbox.model.SplitComponents;
-import com.github.trainbox.model.StartComponent;
-import com.github.trainbox.model.TailComponent;
-import com.github.trainbox.model.Train;
+import com.github.trainbox.core.model.BoxComponent;
+import com.github.trainbox.core.model.Carriage;
+import com.github.trainbox.core.model.Component;
+import com.github.trainbox.core.model.ComponentFactory;
+import com.github.trainbox.core.model.ConcatComponent;
+import com.github.trainbox.core.model.FlipComponent;
+import com.github.trainbox.core.model.MergeComponent;
+import com.github.trainbox.core.model.SplitComponents;
+import com.github.trainbox.core.model.StartComponent;
+import com.github.trainbox.core.model.TailComponent;
+import com.github.trainbox.core.model.Train;
 
 public class ComponentTest {
 	

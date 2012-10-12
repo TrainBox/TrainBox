@@ -7,15 +7,15 @@ import playn.core.Game;
 import playn.core.Platform.Type;
 import playn.core.PlayN;
 
-import com.github.trainbox.model.Level;
-import com.github.trainbox.scenes.DemoScene;
-import com.github.trainbox.scenes.LevelScene;
-import com.github.trainbox.scenes.LevelSelectScene;
-import com.github.trainbox.scenes.LoadingScene;
-import com.github.trainbox.scenes.NullScene;
-import com.github.trainbox.scenes.Scene;
-import com.github.trainbox.scenes.StartScene;
-import com.github.trainbox.util.LevelTracker;
+import com.github.trainbox.core.model.Level;
+import com.github.trainbox.core.scenes.DemoScene;
+import com.github.trainbox.core.scenes.LevelScene;
+import com.github.trainbox.core.scenes.LevelSelectScene;
+import com.github.trainbox.core.scenes.LoadingScene;
+import com.github.trainbox.core.scenes.NullScene;
+import com.github.trainbox.core.scenes.Scene;
+import com.github.trainbox.core.scenes.StartScene;
+import com.github.trainbox.core.util.LevelTracker;
 
 public class TrainBox implements Game{
 	Scene demoScene; 
@@ -25,8 +25,8 @@ public class TrainBox implements Game{
 	
 	AssetWatcher watcher;
 	
-	public final static int WIDTH = 1024;
-	public final static int HEIGHT = 640;
+	public final static int WIDTH = 1280;
+	public final static int HEIGHT = 720;
 	Scene mScene = new NullScene();
 	int currentLevel =0;
 	

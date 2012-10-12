@@ -8,9 +8,10 @@ import org.junit.Test;
 
 import pythagoras.f.Point;
 
-import com.github.trainbox.uimodel.TrainTaker;
-import com.github.trainbox.uimodel.UIComponent;
-import com.github.trainbox.uimodel.UITrain;
+import com.github.trainbox.core.model.Train;
+import com.github.trainbox.core.uimodel.TrainTaker;
+import com.github.trainbox.core.uimodel.UIComponent;
+import com.github.trainbox.core.uimodel.UITrain;
 
 public class UIComponentTest {
 	
