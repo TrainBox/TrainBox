@@ -23,8 +23,8 @@ import com.github.thomasahle.trainbox.trainbox.uimodel.UILevel;
 import com.github.thomasahle.trainbox.trainbox.uimodel.UISeparateComponent;
 import com.github.thomasahle.trainbox.trainbox.uimodel.UISplitMergeComponent;
 
-/**
- * It might be cleaner to keep the demo showing off new components and stuff in a seperate scene. 
+/*
+ * It might be cleaner to keep the demo showing off new components and stuff in a separate scene. 
  */
 public class DemoScene implements Scene, Pointer.Listener {
     int width = graphics().width();
@@ -40,9 +40,6 @@ public class DemoScene implements Scene, Pointer.Listener {
     private UILevel mLevelPage8;
     private UILevel mLevelPage9;
 
-
-
-    
     ImageLayer nextButtonImageLayer;
     ImageLayer backButtonImageLayer;
     ImageLayer doneButtonImageLayer;
@@ -57,78 +54,36 @@ public class DemoScene implements Scene, Pointer.Listener {
 		// Create the demoLayer that contains the demo pages
         demoLayer = graphics().createGroupLayer();
         demoLayer.setTranslation(width/20+40, height/20);
-        final Image demoPage1Image = assets().getImage("images/pngs/demoPage1.png");
-        final Image demoPage2Image = assets().getImage("images/pngs/demoPage2.png");
-        final Image demoPage3Image = assets().getImage("images/pngs/demoPage3.png");
-        final Image demoPage4Image = assets().getImage("images/pngs/demoPage4.png");
-        final Image demoPage5Image = assets().getImage("images/pngs/demoPage5.png");
-        final Image demoPage6Image = assets().getImage("images/pngs/demoPage6.png");
-        final Image demoPage7Image = assets().getImage("images/pngs/demoPage7.png");
-        final Image demoPage8Image = assets().getImage("images/pngs/demoPage8.png");
-        final Image demoPage9Image = assets().getImage("images/pngs/demoPage9.png");
-
+        final String[] images = {
+        	"images/pngs/demoPage1.png",
+        	"images/pngs/demoPage2.png",
+        	"images/pngs/demoPage3.png",
+        	"images/pngs/demoPage4.png",
+        	"images/pngs/demoPage5.png",
+        	"images/pngs/demoPage6.png",
+        	"images/pngs/demoPage7.png",
+        	"images/pngs/demoPage8.png",
+        	"images/pngs/demoPage9.png"
+        };
         
-        
-        
-        
-
-        
-        final ImageLayer demoPage1ImageLayer = graphics().createImageLayer(demoPage1Image);
-        final ImageLayer demoPage2ImageLayer = graphics().createImageLayer(demoPage2Image);
-        final ImageLayer demoPage3ImageLayer = graphics().createImageLayer(demoPage3Image);
-        final ImageLayer demoPage4ImageLayer = graphics().createImageLayer(demoPage4Image);
-        final ImageLayer demoPage5ImageLayer = graphics().createImageLayer(demoPage5Image);
-        final ImageLayer demoPage6ImageLayer = graphics().createImageLayer(demoPage6Image);
-        final ImageLayer demoPage7ImageLayer = graphics().createImageLayer(demoPage7Image);
-        final ImageLayer demoPage8ImageLayer = graphics().createImageLayer(demoPage8Image);
-        final ImageLayer demoPage9ImageLayer = graphics().createImageLayer(demoPage9Image);
-
-        GroupLayer demoPage1Layer = graphics().createGroupLayer();
-        GroupLayer demoPage2Layer = graphics().createGroupLayer();
-        GroupLayer demoPage3Layer = graphics().createGroupLayer();
-        GroupLayer demoPage4Layer = graphics().createGroupLayer();
-        GroupLayer demoPage5Layer = graphics().createGroupLayer();
-        GroupLayer demoPage6Layer = graphics().createGroupLayer();
-        GroupLayer demoPage7Layer = graphics().createGroupLayer();
-        GroupLayer demoPage8Layer = graphics().createGroupLayer();
-        GroupLayer demoPage9Layer = graphics().createGroupLayer();
-        
-        demoPage1Layer.add(demoPage1ImageLayer);
-        demoPage2Layer.add(demoPage2ImageLayer);
-        demoPage3Layer.add(demoPage3ImageLayer);
-        demoPage4Layer.add(demoPage4ImageLayer);
-        demoPage5Layer.add(demoPage5ImageLayer);
-        demoPage6Layer.add(demoPage6ImageLayer);
-        demoPage7Layer.add(demoPage7ImageLayer);
-        demoPage8Layer.add(demoPage8ImageLayer);
-        demoPage9Layer.add(demoPage9ImageLayer);
-
         demoPages = new ArrayList<GroupLayer>();
-        demoPages.add(demoPage1Layer);
-        demoPages.add(demoPage2Layer);
-        demoPages.add(demoPage3Layer);
-        demoPages.add(demoPage4Layer);
-        demoPages.add(demoPage5Layer);
-        demoPages.add(demoPage6Layer);
-        demoPages.add(demoPage7Layer);
-        demoPages.add(demoPage8Layer);
-        demoPages.add(demoPage9Layer);
-
-
-
-        for (int i =0; i<demoPages.size(); i++) {
-        	demoLayer.add(demoPages.get(i));
+        for (String path : images) {
+        	Image image = assets().getImage(path);
+        	ImageLayer imageLayer = graphics().createImageLayer(image);
+        	GroupLayer groupLayer = graphics().createGroupLayer();
+        	groupLayer.add(imageLayer);
+        	groupLayer.setVisible(false);
+        	demoPages.add(groupLayer);
+        	demoLayer.add(groupLayer);
+        	
         }
-    
+
 		initDemoLevels();
 
         
         demoLayer.setVisible(true);
         currentDemoIndex = 0;
-        for (int i =1; i<demoPages.size(); i++) {
-        	demoPages.get(i).setVisible(false);
-        }  
-        
+        demoPages.get(currentDemoIndex).setVisible(true);
         
         final Image backButtonImage = assets().getImage("images/pngs/backButton.png");
         backButtonImageLayer = graphics().createImageLayer(backButtonImage);
