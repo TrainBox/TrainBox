@@ -7,9 +7,9 @@
     <version>1.4</version>
   </parent>
 
-  <groupId>com.github.thomasahle.trainbox</groupId>
+  <groupId>com.github.trainbox</groupId>
   <artifactId>trainbox</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>TrainBox Metaproject</name>
 
@@ -17,19 +17,31 @@
     <playn.version>1.4</playn.version>
   </properties>
 
+  <profiles>
+    <profile>
+      <id>java</id>
+      <activation><activeByDefault>true</activeByDefault></activation>
+      <modules><module>java</module></modules>
+    </profile>
+    <profile>
+      <id>android</id>
+      <modules><module>android</module></modules>
+    </profile>
+    <profile>
+      <id>ios</id>
+      <modules><module>ios</module></modules>
+    </profile>
+    <profile>
+      <id>html</id>
+      <modules><module>html</module></modules>
+    </profile>
+    <profile>
+      <id>flash</id>
+      <modules><module>flash</module></modules>
+    </profile>
+  </profiles>
+
   <modules>
     <module>core</module>
-    <module>java</module>
-    <module>html</module>
-    <module>android</module>
-    <module>ios</module>
   </modules>
-  <dependencies>
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>4.8.1</version>
-  		<scope>test</scope>
-  	</dependency>
-  </dependencies>
 </project>
