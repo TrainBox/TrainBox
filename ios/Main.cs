@@ -4,15 +4,16 @@ using MonoTouch.UIKit;
 
 using playn.ios;
 using playn.core;
-using com.github.thomasahle.trainbox.trainbox.core;
+using com.github.trainbox.core;
 
-namespace com.github.thomasahle.trainbox.trainbox
+namespace com.github.trainbox
 {
   [Register ("AppDelegate")]
-  public partial class AppDelegate : UIApplicationDelegate {
+  public partial class AppDelegate : IOSApplicationDelegate {
     public override bool FinishedLaunching (UIApplication app, NSDictionary options) {
       app.SetStatusBarHidden(true, true);
-      IOSPlatform.register(app, IOSPlatform.SupportedOrients.PORTRAITS);
+      var pf = IOSPlatform.register(app, IOSPlatform.SupportedOrients.PORTRAITS);
+      pf.assets().setPathPrefix("assets");
       PlayN.run(new TrainBox());
       return true;
     }
