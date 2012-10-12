@@ -15,9 +15,6 @@ import pythagoras.f.Dimension;
 import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
 
 public class UIJoinComponent extends BlackBoxComponent{
-
-	
-	private int mWidth, mHeight;
 	
 	private Layer mBackLayer, mFrontLayer;
 	private UITrain frontTrain;	

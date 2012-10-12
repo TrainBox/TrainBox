@@ -13,7 +13,6 @@ import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
 
 public class UIDupComponent extends BlackBoxComponent{
 
-	private int mWidth, mHeight;	
 	private Layer mBackLayer, mFrontLayer;
 	
 

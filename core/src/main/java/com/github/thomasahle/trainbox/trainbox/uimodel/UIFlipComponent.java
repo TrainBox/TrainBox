@@ -15,9 +15,6 @@ import com.github.thomasahle.trainbox.trainbox.util.CanvasHelper;
 
 public class UIFlipComponent extends BlackBoxComponent {
 
-	
-	private int mWidth, mHeight;
-	
 	private Layer mBackLayer, mFrontLayer;
 	private UITrain unpairedTrain;	
 	

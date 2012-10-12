@@ -83,11 +83,15 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 	private void initLevelText() {
 		CanvasImage textImage = graphics().createImage(graphics().width(), 400);
 		Font font = graphics().createFont("Tahoma", Font.Style.BOLD, 35);
-		TextFormat format = new TextFormat().withFont(font)
-				.withEffect(TextFormat.Effect.outline(0xff8f5902))
-				.withTextColor(0xffca7829);
-		textImage.canvas().drawText(
-				graphics().layoutText(mLevel.getLevel().title, format), 0, 0);
+
+		TextFormat format = new TextFormat().withFont(font);
+
+		textImage.canvas().setStrokeColor(0xff8f5902).setFillColor(0xffca7829);
+		textImage.canvas().fillText(
+				graphics().layoutText(mLevel.getLevel().title, format), 0f, 0f);
+
+		textImage.canvas().strokeText(
+				graphics().layoutText(mLevel.getLevel().title, format), 0f, 0f);
 		titleLayer = graphics().createImageLayer(textImage);
 		titleLayer.setTranslation(50, 35);
 	}
@@ -421,12 +425,12 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 		CanvasImage textImage = graphics().createImage(
 				graphics().screenWidth(), 400);
 		Font font = graphics().createFont("Sans", Font.Style.BOLD, 30);
-		TextFormat format = new TextFormat().withFont(font)
-				.withAlignment(Alignment.CENTER)
-				.withEffect(TextFormat.Effect.outline(0xff000000))
-				.withTextColor(0xfffdd99b);
-		textImage.canvas().drawText(graphics().layoutText(comment, format), 0,
-				0);
+		TextFormat format = new TextFormat().withFont(font).withAlignment(
+				Alignment.CENTER);
+		textImage.canvas().setStrokeColor(0xff000000).setFillColor(0xfffdd99b);
+		textImage.canvas()
+				.fillText(graphics().layoutText(comment, format), 0, 0)
+				.strokeText(graphics().layoutText(comment, format), 0, 0);
 		return textImage;
 	}
 

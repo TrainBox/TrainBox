@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.googlecode.playn</groupId>
     <artifactId>playn-project</artifactId>
-    <version>1.2</version>
+    <version>1.4</version>
   </parent>
 
   <groupId>com.github.thomasahle.trainbox</groupId>
@@ -14,7 +14,7 @@
   <name>TrainBox Metaproject</name>
 
   <properties>
-    <playn.version>1.2</playn.version>
+    <playn.version>1.4</playn.version>
   </properties>
 
   <modules>

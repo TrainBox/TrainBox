@@ -21,7 +21,7 @@ public class UISeparateComponent extends AbstractComponent {
 	private static final float UP_LEVEL = 0.95f;
 
 	private Layer mBackLayer, mFrontLayer;
-	private int mWidth, mHeight;
+	private float mWidth, mHeight;
 	private LinkedList<UITrain> mLeftSide = new LinkedList<UITrain>();
 	private LinkedList<UITrain> mRightSide = new LinkedList<UITrain>();
 	

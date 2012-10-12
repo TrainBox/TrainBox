@@ -138,7 +138,6 @@ public class TrainBox implements Game{
 
 	@Override
 	public int updateRate() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
