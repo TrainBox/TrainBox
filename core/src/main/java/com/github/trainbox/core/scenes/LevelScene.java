@@ -91,8 +91,8 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 		textImage.canvas().fillText(
 				graphics().layoutText(mLevel.getLevel().title, format), 0f, 0f);
 
-		textImage.canvas().strokeText(
-				graphics().layoutText(mLevel.getLevel().title, format), 0f, 0f);
+//		textImage.canvas().strokeText(
+//				graphics().layoutText(mLevel.getLevel().title, format), 0f, 0f);
 		titleLayer = graphics().createImageLayer(textImage);
 		titleLayer.setTranslation(50, 35);
 	}
@@ -430,8 +430,8 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 				Alignment.CENTER);
 		textImage.canvas().setStrokeColor(0xff000000).setFillColor(0xfffdd99b);
 		textImage.canvas()
-				.fillText(graphics().layoutText(comment, format), 0, 0)
-				.strokeText(graphics().layoutText(comment, format), 0, 0);
+				.fillText(graphics().layoutText(comment, format), 0, 0);
+//				.strokeText(graphics().layoutText(comment, format), 0, 0);
 		return textImage;
 	}
 
