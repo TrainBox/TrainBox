@@ -5,12 +5,16 @@ import static playn.core.PlayN.graphics;
 import static playn.core.PlayN.pointer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.GroupLayer;
 import playn.core.Image;
 import playn.core.ImageLayer;
+import playn.core.PlayN;
 import playn.core.Pointer;
 import pythagoras.f.Point;
 
@@ -26,19 +30,19 @@ import com.github.thomasahle.trainbox.trainbox.uimodel.UISplitMergeComponent;
 /*
  * It might be cleaner to keep the demo showing off new components and stuff in a separate scene. 
  */
-public class DemoScene implements Scene, Pointer.Listener {
+public class DemoScene implements Scene {
     int width = graphics().width();
 	int height = graphics().height();
 	CanvasImage bgImage = graphics().createImage(graphics().width(),graphics().height());
     ImageLayer bgLayer;
     GroupLayer demoLayer;
     TrainBox trainBox;
-    ArrayList<GroupLayer> demoPages;  // this array contains the pages that the demo contains, allows easy iteration
-    int currentDemoIndex;
-    private UILevel mLevelPage6;
-    private UILevel mLevelPage7;
-    private UILevel mLevelPage8;
-    private UILevel mLevelPage9;
+    List<GroupLayer> demoPages;
+    Map<Integer, UILevel> levels;
+    
+    public static final int LEVELS = 9;
+    
+    int mPage;
 
     ImageLayer nextButtonImageLayer;
     ImageLayer backButtonImageLayer;
@@ -66,6 +70,8 @@ public class DemoScene implements Scene, Pointer.Listener {
         	"images/pngs/demoPage9.png"
         };
         
+        assert(images.length == LEVELS);
+        
         demoPages = new ArrayList<GroupLayer>();
         for (String path : images) {
         	Image image = assets().getImage(path);
@@ -75,15 +81,25 @@ public class DemoScene implements Scene, Pointer.Listener {
         	groupLayer.setVisible(false);
         	demoPages.add(groupLayer);
         	demoLayer.add(groupLayer);
-        	
         }
-
-		initDemoLevels();
-
+        
+        assert(demoPages.size() == LEVELS);
+        
+        initDemoLevels();
+        
+        PlayN.log().debug("images.length = " + images.length + ", "
+        		+ "demoPages.length = " + demoPages.size() + ", "
+        		+ "levels.length = " + levels.size());
+        
+        // TODO could possibly be a bit cleaner
+        for (int i = 0; i < demoPages.size(); i++) {
+        	UILevel level = levels.get(i);
+        	if (level != null) demoPages.get(i).add(level.layer());
+        }
         
         demoLayer.setVisible(true);
-        currentDemoIndex = 0;
-        demoPages.get(currentDemoIndex).setVisible(true);
+        mPage = 0;
+        demoPages.get(mPage).setVisible(true);
         
         final Image backButtonImage = assets().getImage("images/pngs/backButton.png");
         backButtonImageLayer = graphics().createImageLayer(backButtonImage);
@@ -94,13 +110,7 @@ public class DemoScene implements Scene, Pointer.Listener {
 
 			@Override
 			public void onPointerStart(Pointer.Event event) {
-				demoPages.get(currentDemoIndex).setVisible(false);
-				demoPages.get(currentDemoIndex - 1).setVisible(true);
-				nextButtonImageLayer.setVisible(true);
-				doneButtonImageLayer.setVisible(false);
-				if ((currentDemoIndex - 1) == 0)
-					backButtonImageLayer.setVisible(false);
-				currentDemoIndex = currentDemoIndex - 1;
+				previousPage();
 			}
 
 		});
@@ -113,18 +123,7 @@ public class DemoScene implements Scene, Pointer.Listener {
 
 			@Override
 			public void onPointerStart(Pointer.Event event) {
-				demoPages.get(currentDemoIndex).setVisible(false);
-				demoPages.get(currentDemoIndex + 1).setVisible(true);
-				backButtonImageLayer.setVisible(true);
-				if ((currentDemoIndex + 1) == demoPages.size() - 1) {
-					nextButtonImageLayer.setVisible(false);
-					doneButtonImageLayer.setVisible(true);
-				} else {
-					doneButtonImageLayer.setVisible(false);
-				}
-
-				currentDemoIndex = currentDemoIndex + 1;
-
+				nextPage();
 			}
 		});
 
@@ -137,64 +136,91 @@ public class DemoScene implements Scene, Pointer.Listener {
 
 			@Override
 			public void onPointerStart(Pointer.Event event) {
-				demoPages.get(currentDemoIndex).setVisible(false);
-				// initialize for the next run of the demo
-				demoPages.get(0).setVisible(true);
-				currentDemoIndex = 0;
-				doneButtonImageLayer.setVisible(false);
-				backButtonImageLayer.setVisible(false);
-				nextButtonImageLayer.setVisible(true);
-
-				trainBox.setScene(trainBox.getStartScene());
-
+				leaveDemo();
 			}
 		});
 
 	}
+	
+	private void nextPage() {
+		setPage(getPage() + 1);
+	}
+	
+	private void previousPage() {
+		setPage(getPage() - 1);
+	}
+	
+	private void leaveDemo() {
+		setPage(0);
+		trainBox.setScene(trainBox.getStartScene());
+	}
+	
+	private void setPage(int page) {
+		demoPages.get(mPage).setVisible(false);
+		if (levels.get(mPage) != null)
+			levels.get(mPage).paused(true);
+		
+		mPage = page;
+		
+		demoPages.get(mPage).setVisible(true);
+		if (levels.get(mPage) != null) {
+			levels.get(mPage).reset();
+			levels.get(mPage).paused(false);
+		}
+		
+		backButtonImageLayer.setVisible(mPage != 0);
+		nextButtonImageLayer.setVisible(mPage != demoPages.size() - 1);
+		doneButtonImageLayer.setVisible(mPage == demoPages.size() - 1);
+		
+	}
+	
+	private int getPage() {
+		return mPage;
+	}
 
 	private void initDemoLevels() {
-		mLevelPage6 = new UILevel(new Level(
+		levels = new HashMap<Integer, UILevel>(LEVELS);
+		UILevel level5 = new UILevel(new Level(
 				0, "",
 				"2 1", "2-1",
 				0,0,0,0,0
 			));
+		
+		level5.paused(true);
 		//mLevelPage6.insertChildAt(new UIJoinComponent(), new Point(0,0));
-		mLevelPage6.insertChildAt(new UIJoinComponent(), new Point(210,50));
-		mLevelPage6.layer().setTranslation(80, 420);
-		demoPages.get(5).add(mLevelPage6.layer());
+		level5.insertChildAt(new UIJoinComponent(), new Point(210,50));
+		level5.layer().setTranslation(80, 420);
+		levels.put(5, level5);
 		
-		
-		mLevelPage7 = new UILevel(new Level(
+		UILevel level6 = new UILevel(new Level(
 				0, "",
-				"2 1", "2-1",
+				"2-1", "2 1",
 				0,0,0,0,0
 			));
-		mLevelPage7.insertChildAt(new UISeparateComponent(), new Point(210,50));
-		mLevelPage7.layer().setTranslation(80, 420);
-		demoPages.get(6).add(mLevelPage7.layer());
+		level6.paused(true);
+		level6.insertChildAt(new UISeparateComponent(), new Point(210,50));
+		level6.layer().setTranslation(80, 420);
+		levels.put(6, level6);
 		
-		
-		mLevelPage8 = new UILevel(new Level(
+		UILevel level7 = new UILevel(new Level(
 				0, "",
-				"2 1", "2-1",
+				"2 1", "1 2",
 				0,0,0,0,0
 			));
-		mLevelPage8.insertChildAt(new UIFlipComponent(), new Point(210,50));
-		mLevelPage8.layer().setTranslation(80, 420);
-		demoPages.get(7).add(mLevelPage8.layer());
+		level7.paused(true);
+		level7.insertChildAt(new UIFlipComponent(), new Point(210,50));
+		level7.layer().setTranslation(80, 420);
+		levels.put(7, level7);
 		
-		
-		mLevelPage9 = new UILevel(new Level(
+		UILevel level8 = new UILevel(new Level(
 				0, "",
-				"2 1", "2-1",
+				"2 1", "2 1",
 				0,0,0,0,0
 			));
-		mLevelPage9.insertChildAt(new UISplitMergeComponent(new UIHorizontalComponent(100), new UIHorizontalComponent(100)), new Point(210,50));
-		mLevelPage9.layer().setTranslation(10, 350);
-		demoPages.get(8).add(mLevelPage9.layer());
-		
-		mLevelPage6.paused(false);
-		
+		level8.paused(true);
+		level8.insertChildAt(new UISplitMergeComponent(new UIHorizontalComponent(100), new UIHorizontalComponent(100)), new Point(210,50));
+		level8.layer().setTranslation(10, 350);
+		levels.put(8, level8);
 	}
 
 	@Override
@@ -202,7 +228,7 @@ public class DemoScene implements Scene, Pointer.Listener {
 		graphics().rootLayer().add(bgLayer);
 	    graphics().rootLayer().add(demoLayer);
 		//graphics().rootLayer().add();
-	    pointer().setListener(this);
+	    pointer().setListener(null);
 	}
 
 	@Override
@@ -211,38 +237,11 @@ public class DemoScene implements Scene, Pointer.Listener {
 	    graphics().rootLayer().remove(demoLayer);
 		//graphics().rootLayer().remove(mLevel.layer());
 	    pointer().setListener(null);
-
-
-
 	}
 	
 	@Override
 	public void update(float delta) {
-		mLevelPage6.update(delta);
-		mLevelPage7.update(delta);
-		mLevelPage8.update(delta);
-		mLevelPage9.update(delta);
+		for (UILevel level : levels.values())
+			if (level != null) level.update(delta);
 	}
-	
-
-	@Override
-	public void onPointerStart(playn.core.Pointer.Event event) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onPointerEnd(playn.core.Pointer.Event event) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onPointerDrag(playn.core.Pointer.Event event) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
-
 }
