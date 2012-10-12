@@ -103,7 +103,7 @@ public class DemoScene implements Scene, Pointer.Listener {
         demoPage8Layer.add(demoPage8ImageLayer);
         demoPage9Layer.add(demoPage9ImageLayer);
 
-        demoPages = new ArrayList();
+        demoPages = new ArrayList<GroupLayer>();
         demoPages.add(demoPage1Layer);
         demoPages.add(demoPage2Layer);
         demoPages.add(demoPage3Layer);
