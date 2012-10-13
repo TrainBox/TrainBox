@@ -181,7 +181,7 @@ public class UIGoalComponent extends AbstractComponent implements TrainTaker,
 			if (checkDeliveredPrefix()) {
 				trackColor = GREEN;
 				if (trainsStoppedMoving())
-					mListener.levelCleared();
+					mListener.levelComplete();
 			}
 			else {
 				trackColor = RED;

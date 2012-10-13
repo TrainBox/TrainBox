@@ -4,16 +4,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
+import playn.core.PlayN;
 import pythagoras.f.Point;
 
+import com.github.trainbox.core.model.Level;
 import com.github.trainbox.core.model.Train;
 import com.github.trainbox.core.uimodel.TrainTaker;
 import com.github.trainbox.core.uimodel.UIComponent;
+import com.github.trainbox.core.uimodel.UIHorizontalComponent;
 import com.github.trainbox.core.uimodel.UITrain;
+import com.github.trainbox.model.PlayNMocks.MockPlatform;
 
-public class UIComponentTest {
+public class UIComponentTest extends TestCase {
 	
 	private static final int RUNS = 1000;
 	
@@ -54,12 +60,18 @@ public class UIComponentTest {
 	
 	@Test
 	public void testSimple() {
-		/*Level level = new Level(
-				ComponentFactory.parseTrains("1-2-3-4"),
-				ComponentFactory.parseTrains("1-2-3-4"));
+		Level level = new Level(0, "",
+				"1-2-3-4",
+				"1-2-3-4",
+				0, 0, 0, 0, 0);
 		UIHorizontalComponent track = new UIHorizontalComponent(1);
 		addTrains(track, level.input);
-		assertEquals(run(track), level.goal);*/
+		assertEquals(run(track), level.goal);
+	}
+	
+	@Override
+	public void setUp() {
+		PlayN.setPlatform(new MockPlatform());
 	}
 }
 

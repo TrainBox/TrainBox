@@ -124,8 +124,8 @@ public class StartScene implements Scene, Keyboard.Listener, Pointer.Listener {
 		demoButtonImageLayer.setTranslation(110, 80);
 		demoButtonImageLayer.addListener(new Pointer.Listener() {
 
-			Image demoButtonPressedImage = assets().getImage(
-					"images/pngs/demoButtonPressed.png");
+//			Image demoButtonPressedImage = assets().getImage(
+//					"images/pngs/demoButtonPressed.png");
 
 			@Override
 			public void onPointerStart(playn.core.Pointer.Event event) {

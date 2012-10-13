@@ -11,8 +11,9 @@ import playn.core.CanvasImage;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
 import playn.core.Layer;
+import playn.core.Path;
+import pythagoras.f.Dimension;
 import pythagoras.f.Point;
-import pythagoras.i.Dimension;
 
 import com.github.trainbox.core.model.Carriage;
 import com.github.trainbox.core.model.NullTrain;
@@ -31,7 +32,7 @@ public class UITrain {
 	private float mLeftCrop;
 	
 	private ImageLayer mDebugLayer;
-	private final static boolean DEBUG = false;
+	private final static boolean DEBUG = true;
 	
 	public UITrain(Train train) {
 		this(fromTrain(train));
@@ -110,7 +111,19 @@ public class UITrain {
 	private void updateDebugLayer() {
 		if (DEBUG) {
 			CanvasImage image = graphics().createImage(mSize.width, mSize.height);
-			image.canvas().setStrokeColor(0xffff0000).strokeRect(0, 0, mSize.width-1, mSize.height-1);
+			image.canvas().setStrokeColor(0xffff0000);
+			if (mCarriages.size() != 0) {
+				Path path = image.canvas().createPath();
+				Point p0 = mCarriages.get(0).getPosition();
+				path.moveTo(p0.x, p0.y);
+				for (int i = 1; i < mCarriages.size(); i++) {
+					Point p = mCarriages.get(i).getPosition();
+					path.lineTo(p.x, p.y);
+				}
+				image.canvas().strokePath(path);
+			}
+
+//			strokeRect(0, 0, mSize.width-1, mSize.height-1);
 			mDebugLayer.setImage(image);
 		}
 	}

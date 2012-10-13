@@ -30,9 +30,9 @@ public class UISplitMergeComponent extends AbstractComposite {
 
 	private final static float SIDES_WIDTH = 150;
 	private int maxLenOutTop, maxLenOutBot = 0;
-	private int deadlockBufferWidth(){
-		return (this.maxExpectedLength * UICarriage.WIDTH)+100;
-	}
+//	private int deadlockBufferWidth(){
+//		return (this.maxExpectedLength * UICarriage.WIDTH)+100;
+//	}
 	
 	private LinkedList<UITrain> mIngoing = new LinkedList<UITrain>();
 	private LinkedList<UITrain> mOutgoing= new LinkedList<UITrain>();

@@ -1,11 +1,11 @@
 package com.github.trainbox.core.uimodel;
 
 public interface LevelFinishedListener {
-	public void levelCleared();
+	public void levelComplete();
 	public void levelFailed(String message);
 	
 	class Null implements LevelFinishedListener {
-		@Override public void levelCleared() {}
+		@Override public void levelComplete() {}
 		@Override public void levelFailed(String message) {}
 	}
 }

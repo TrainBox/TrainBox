@@ -51,7 +51,7 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 	private ToolManager toolMan;
 	int currPauseGoButtonImageIndex = 0;
 
-	GroupLayer levelStatusLayer;
+//	GroupLayer levelStatusLayer;
 	GroupLayer levelControlLayer;
 	ImageLayer pauseButtonImageLayer;
 	GroupLayer levelPopupLayer;
@@ -117,7 +117,6 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 		graphics().rootLayer().add(mLevel.layer());
 		graphics().rootLayer().add(levelControlLayer);
 		graphics().rootLayer().add(pauseButtonImageLayer);
-		graphics().rootLayer().add(levelStatusLayer);
 		graphics().rootLayer().add(levelPopupLayer);
 		keyboard().setListener(this);
 	}
@@ -130,7 +129,6 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 		graphics().rootLayer().remove(mLevel.layer());
 		graphics().rootLayer().remove(levelControlLayer);
 		graphics().rootLayer().remove(pauseButtonImageLayer);
-		graphics().rootLayer().remove(levelStatusLayer);
 		graphics().rootLayer().remove(levelPopupLayer);
 		keyboard().setListener(null);
 	}
@@ -313,86 +311,58 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 	}
 
 	private void initLevelStatus() {
-		levelStatusLayer = graphics().createGroupLayer();
-		levelStatusLayer.setTranslation(WIDTH / 20 + 40, HEIGHT / 20);
 
-		//
-
-		Image levelFailedBlurbImage = assets().getImage(
-				"images/pngs/levelFailedBlurb.png");
-		Image levelCompletedBlurb = assets().getImage(
-				"images/pngs/levelCompleteBlurb.png");
-		final Layer levelFailedBlurbImageLayer = graphics().createImageLayer(
-				levelFailedBlurbImage);
-		final Layer levelCompletedBlurbImageLayer = graphics()
-				.createImageLayer(levelCompletedBlurb);
-		final ImageLayer levelStatusText = graphics().createImageLayer();
-		levelStatusLayer.add(levelCompletedBlurbImageLayer);
-		levelStatusLayer.add(levelFailedBlurbImageLayer);
-		levelStatusLayer.add(levelStatusText);
-		levelFailedBlurbImageLayer.setVisible(false);
-		levelCompletedBlurbImageLayer.setVisible(false);
-		levelStatusLayer.setVisible(false);
-		levelStatusText.setVisible(false);
-
-		// initialise the next button image layer
-		Image nextButtonImage = assets().getImage("images/pngs/nextButton.png");
-		final Layer nextButtonLeveLStatusImageLayer = graphics()
-				.createImageLayer(nextButtonImage);
-		levelStatusLayer.add(nextButtonLeveLStatusImageLayer);
-		nextButtonLeveLStatusImageLayer.setTranslation(680, 520);
-		nextButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
-			@Override
-			public void onPointerStart(Event event) {
-				levelFailedBlurbImageLayer.setVisible(false);
-				levelCompletedBlurbImageLayer.setVisible(false);
-				levelStatusLayer.setVisible(false);
-				levelStatusText.setVisible(false);
-				trainBox.setLevel(mLevel.getLevel().levelNumber + 1);
-			}
-		});
+//		// initialise the next button image layer
+//		Image nextButtonImage = assets().getImage("images/pngs/nextButton.png");
+//		final Layer nextButtonLeveLStatusImageLayer = graphics()
+//				.createImageLayer(nextButtonImage);
+////		levelStatusLayer.add(nextButtonLeveLStatusImageLayer);
+//		nextButtonLeveLStatusImageLayer.setTranslation(680, 520);
+//		nextButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
+//			@Override
+//			public void onPointerStart(Event event) {
+//				levelFailedBlurbImageLayer.setVisible(false);
+//				levelCompletedBlurbImageLayer.setVisible(false);
+//				levelStatusLayer.setVisible(false);
+//				levelStatusText.setVisible(false);
+//				trainBox.setLevel(mLevel.getLevel().levelNumber + 1);
+//			}
+//		});
 
 		// initialise the retry button image layer
 		// TODO create an image called retryButton and replace the text below
 		// VVVV
-		Image retryButtonImage = assets().getImage(
-				"images/pngs/retryButton.png");
-		final Layer retryButtonLeveLStatusImageLayer = graphics()
-				.createImageLayer(retryButtonImage);
-		retryButtonLeveLStatusImageLayer.setScale(0.95f, 0.95f); // to fix the
-																	// fact that
-																	// the retry
-																	// button is
-																	// slightly
-																	// larger
-																	// than the
-																	// next
-																	// one...
-		levelStatusLayer.add(retryButtonLeveLStatusImageLayer);
-		retryButtonLeveLStatusImageLayer.setTranslation(550, 520);
-		retryButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
-			@Override
-			public void onPointerStart(Event event) {
-				levelFailedBlurbImageLayer.setVisible(false);
-				levelCompletedBlurbImageLayer.setVisible(false);
-				levelStatusText.setVisible(false);
-				levelStatusLayer.setVisible(false);
-				resetLevel();
-				// trainBox.setLevel(mLevel.getLevel().levelNumber);
-			}
-		});
+//		Image retryButtonImage = assets().getImage(
+//				"images/pngs/retryButton.png");
+//		final Layer retryButtonLeveLStatusImageLayer = graphics()
+//				.createImageLayer(retryButtonImage);
+//		retryButtonLeveLStatusImageLayer.setScale(0.95f, 0.95f); // to fix the
+//																	// fact that
+//																	// the retry
+//																	// button is
+//																	// slightly
+//																	// larger
+//																	// than the
+//																	// next
+//																	// one...
+//		levelStatusLayer.add(retryButtonLeveLStatusImageLayer);
+//		retryButtonLeveLStatusImageLayer.setTranslation(550, 520);
+//		retryButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
+//			@Override
+//			public void onPointerStart(Event event) {
+//				levelFailedBlurbImageLayer.setVisible(false);
+//				levelCompletedBlurbImageLayer.setVisible(false);
+//				levelStatusText.setVisible(false);
+//				levelStatusLayer.setVisible(false);
+//				resetLevel();
+//				// trainBox.setLevel(mLevel.getLevel().levelNumber);
+//			}
+//		});
 
 		mLevel.setListener(new LevelFinishedListener() {
 			@Override
-			public void levelCleared() {
-				log().debug("Level Cleared!");
-				levelStatusLayer.setVisible(true);
-				levelFailedBlurbImageLayer.setVisible(false);
-				levelCompletedBlurbImageLayer.setVisible(true);
-				nextButtonLeveLStatusImageLayer.setVisible(true);
-				retryButtonLeveLStatusImageLayer.setVisible(true);
-				levelStatusText.setVisible(true);
-
+			public void levelComplete() {
+				
 				int used = mLevel.countUserComponents();
 				int needed = mLevel.getLevel().dupsBest
 						+ mLevel.getLevel().chainsBest
@@ -402,22 +372,34 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 				String comment = used == needed ? "You found the perfect solution!"
 						: "Your solution used " + (used - needed)
 								+ " more\ncomponents than needed";
-				levelStatusText.setImage(createCommentImage(comment));
-				levelStatusText.setTranslation(100, 425);
+				
+				UIModalMessage levelCompleteDialogue = new UIModalMessage(graphics().rootLayer(), "Level Complete!", comment);
+				
+				levelCompleteDialogue.setVisible(true);
+				log().debug("Level Complete!");
+
+//				levelFailedBlurbImageLayer.setVisible(false);
+//				levelCompletedBlurbImageLayer.setVisible(true);
+//				nextButtonLeveLStatusImageLayer.setVisible(true);
+//				retryButtonLeveLStatusImageLayer.setVisible(true);
+//				levelStatusText.setVisible(true);
+//
+//				levelStatusText.setImage(createCommentImage(comment));
+//				levelStatusText.setTranslation(100, 425);
 				trainBox.levelComplete();
 			}
 
 			@Override
 			public void levelFailed(String message) {
-				levelStatusLayer.setVisible(true);
-				levelCompletedBlurbImageLayer.setVisible(false);
-				levelFailedBlurbImageLayer.setVisible(true);
-				nextButtonLeveLStatusImageLayer.setVisible(false);
-				retryButtonLeveLStatusImageLayer.setVisible(true);
-				levelStatusText.setVisible(true);
-
-				levelStatusText.setImage(createCommentImage(message));
-				levelStatusText.setTranslation(50, 500);
+//				levelStatusLayer.setVisible(true);
+//				levelCompletedBlurbImageLayer.setVisible(false);
+//				levelFailedBlurbImageLayer.setVisible(true);
+//				nextButtonLeveLStatusImageLayer.setVisible(false);
+//				retryButtonLeveLStatusImageLayer.setVisible(true);
+//				levelStatusText.setVisible(true);
+//
+//				levelStatusText.setImage(createCommentImage(message));
+//				levelStatusText.setTranslation(50, 500);
 			}
 		});
 	}

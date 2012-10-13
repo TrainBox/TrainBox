@@ -3,7 +3,7 @@ package com.github.trainbox.core.uimodel;
 import static playn.core.PlayN.log;
 
 public class NullTrainTaker implements TrainTaker {
-	private int maxExpectedLength = 0;
+//	private int maxExpectedLength = 0;
 	@Override
 	public void takeTrain(UITrain train) {
 		log().debug("NullTaker took: "+train.train());
@@ -16,7 +16,7 @@ public class NullTrainTaker implements TrainTaker {
 
 	@Override
 	public void updateMaxLengthTrainExpected(int compNum, int len) {
-		this.maxExpectedLength = len;
+//		this.maxExpectedLength = len;
 		//propagation ends here
 
 	}

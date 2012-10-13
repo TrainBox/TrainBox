@@ -1,0 +1,995 @@
+package com.github.trainbox.model;
+
+
+import playn.core.Analytics;
+import playn.core.Assets;
+import playn.core.Audio;
+import playn.core.Canvas;
+import playn.core.CanvasImage;
+import playn.core.Connection;
+import playn.core.Font;
+import playn.core.Font.Style;
+import playn.core.Game;
+import playn.core.Gradient;
+import playn.core.Graphics;
+import playn.core.GroupLayer;
+import playn.core.GroupLayer.Clipped;
+import playn.core.Image;
+import playn.core.ImageLayer;
+import playn.core.ImmediateLayer;
+import playn.core.ImmediateLayer.Renderer;
+import playn.core.Json;
+import playn.core.Keyboard;
+import playn.core.Layer;
+import playn.core.Log;
+import playn.core.Mouse;
+import playn.core.Mouse.LayerListener;
+import playn.core.Net;
+import playn.core.Path;
+import playn.core.Pattern;
+import playn.core.Platform;
+import playn.core.PlayN.LifecycleListener;
+import playn.core.Pointer;
+import playn.core.Pointer.Listener;
+import playn.core.RegularExpression;
+import playn.core.ResourceCallback;
+import playn.core.Sound;
+import playn.core.Storage;
+import playn.core.Surface;
+import playn.core.SurfaceLayer;
+import playn.core.TextFormat;
+import playn.core.TextLayout;
+import playn.core.Touch;
+import playn.core.gl.GL20;
+import playn.core.gl.GLContext;
+import playn.core.gl.GLShader;
+import pythagoras.f.IPoint;
+import pythagoras.f.IVector;
+import pythagoras.f.Point;
+import pythagoras.f.Transform;
+import pythagoras.f.Vector;
+
+public class PlayNMocks {
+	public static class MockTransform implements Transform {
+
+		@Override
+		public float uniformScale() {
+			return 0;
+		}
+
+		@Override
+		public Vector scale() {
+			return null;
+		}
+
+		@Override
+		public float scaleX() {
+			return 0;
+		}
+
+		@Override
+		public float scaleY() {
+			return 0;
+		}
+
+		@Override
+		public float rotation() {
+			return 0;
+		}
+
+		@Override
+		public Vector translation() {
+			return null;
+		}
+
+		@Override
+		public float tx() {
+			return 0;
+		}
+
+		@Override
+		public float ty() {
+			return 0;
+		}
+
+		@Override
+		public Transform setUniformScale(float scale) {
+			return this;
+		}
+
+		@Override
+		public Transform setScale(float scaleX, float scaleY) {
+			return this;
+		}
+
+		@Override
+		public Transform setScaleX(float scaleX) {
+			return this;
+		}
+
+		@Override
+		public Transform setScaleY(float scaleY) {
+			return this;
+		}
+
+		@Override
+		public Transform setRotation(float angle) {
+			return this;
+		}
+
+		@Override
+		public Transform setTranslation(float tx, float ty) {
+			return this;
+		}
+
+		@Override
+		public Transform setTx(float tx) {
+			return this;
+		}
+
+		@Override
+		public Transform setTy(float ty) {
+			return this;
+		}
+
+		@Override
+		public Transform setTransform(float m00, float m01, float m10,
+				float m11, float tx, float ty) {
+			return this;
+		}
+
+		@Override
+		public Transform uniformScale(float scale) {
+			return this;
+		}
+
+		@Override
+		public Transform scale(float scaleX, float scaleY) {
+			return this;
+		}
+
+		@Override
+		public Transform scaleX(float scaleX) {
+			return this;
+		}
+
+		@Override
+		public Transform scaleY(float scaleY) {
+			return this;
+		}
+
+		@Override
+		public Transform rotate(float angle) {
+			return this;
+		}
+
+		@Override
+		public Transform translate(float tx, float ty) {
+			return this;
+		}
+
+		@Override
+		public Transform translateX(float tx) {
+			return this;
+		}
+
+		@Override
+		public Transform translateY(float ty) {
+			return this;
+		}
+
+		@Override
+		public Transform invert() {
+			return this;
+		}
+
+		@Override
+		public Transform concatenate(Transform other) {
+			return this;
+		}
+
+		@Override
+		public Transform preConcatenate(Transform other) {
+			return this;
+		}
+
+		@Override
+		public Transform lerp(Transform other, float t) {
+			return this;
+		}
+
+		@Override
+		public Point transform(IPoint p, Point into) {
+			return null;
+		}
+
+		@Override
+		public void transform(IPoint[] src, int srcOff, Point[] dst,
+				int dstOff, int count) {}
+
+		@Override
+		public void transform(float[] src, int srcOff, float[] dst, int dstOff,
+				int count) {}
+
+		@Override
+		public Point inverseTransform(IPoint p, Point into) {
+			return null;
+		}
+
+		@Override
+		public Vector transformPoint(IVector v, Vector into) {
+			return null;
+		}
+
+		@Override
+		public Vector transform(IVector v, Vector into) {
+			return null;
+		}
+
+		@Override
+		public Vector inverseTransform(IVector v, Vector into) {
+			return null;
+		}
+
+		@Override
+		public int generality() {
+			return 0;
+		}
+		
+		@Override
+		public Transform clone() {
+			return this;
+		}
+
+	}
+
+	public static class MockAssets implements Assets {
+
+		@Override
+		public Image getImage(String path) {
+			return null;
+		}
+
+		@Override
+		public Sound getSound(String path) {
+			return null;
+		}
+
+		@Override
+		public void getText(String path, ResourceCallback<String> callback) {}
+
+		@Override
+		public boolean isDone() {
+			return false;
+		}
+
+		@Override
+		public int getPendingRequestCount() {
+			return 0;
+		}
+
+	}
+
+	public static class MockPath implements Path {
+
+		@Override
+		public void reset() {}
+
+		@Override
+		public void close() {}
+
+		@Override
+		public void moveTo(float x, float y) {}
+
+		@Override
+		public void lineTo(float x, float y) {}
+
+		@Override
+		public void quadraticCurveTo(float cpx, float cpy, float x, float y) {}
+
+		@Override
+		public void bezierTo(float c1x, float c1y, float c2x, float c2y,
+				float x, float y) {}
+
+	}
+
+	public static class MockPlatform implements Platform {
+
+		@Override
+		public void run(Game game) {}
+
+		@Override
+		public Type type() {
+			return null;
+		}
+
+		@Override
+		public double time() {
+			return 0;
+		}
+
+		@Override
+		public float random() {
+			return 0;
+		}
+
+		@Override
+		public void openURL(String url) {}
+
+		@Override
+		public void invokeLater(Runnable runnable) {}
+
+		@Override
+		public void setLifecycleListener(LifecycleListener listener) {}
+
+		@Override
+		public Audio audio() {
+			return null;
+		}
+
+		@Override
+		public Graphics graphics() {
+			return new MockGraphics();
+		}
+
+		@Override
+		public Assets assets() {
+			return new MockAssets();
+		}
+
+		@Override
+		public Json json() {
+			return null;
+		}
+
+		@Override
+		public Keyboard keyboard() {
+			return null;
+		}
+
+		@Override
+		public Log log() {
+			return null;
+		}
+
+		@Override
+		public Net net() {
+			return null;
+		}
+
+		@Override
+		public Pointer pointer() {
+			return null;
+		}
+
+		@Override
+		public Mouse mouse() {
+			return null;
+		}
+
+		@Override
+		public Touch touch() {
+			return null;
+		}
+
+		@Override
+		public Storage storage() {
+			return null;
+		}
+
+		@Override
+		public Analytics analytics() {
+			return null;
+		}
+
+		@Override
+		public RegularExpression regularExpression() {
+			return null;
+		}
+
+	}
+
+	public static class MockGraphics implements Graphics {
+		private GroupLayer root = createGroupLayer();
+
+		@Override
+		public GroupLayer rootLayer() {
+			return root;
+		}
+
+		@Override
+		public GroupLayer createGroupLayer() {
+			return new MockLayer();
+		}
+
+		@Override
+		public Clipped createGroupLayer(float width, float height) {
+			return new MockLayer();
+		}
+
+		@Override
+		public playn.core.ImmediateLayer.Clipped createImmediateLayer(
+				int width, int height, Renderer renderer) {
+			return new MockLayer();
+		}
+
+		@Override
+		public ImmediateLayer createImmediateLayer(Renderer renderer) {
+			return new MockLayer();
+		}
+
+		@Override
+		public SurfaceLayer createSurfaceLayer(float width, float height) {
+			return new MockLayer();
+		}
+
+		@Override
+		public ImageLayer createImageLayer() {
+			return new MockLayer();
+		}
+
+		@Override
+		public ImageLayer createImageLayer(Image image) {
+			return new MockLayer();
+		}
+
+		@Override
+		public CanvasImage createImage(float width, float height) {
+			return new MockCanvas();
+		}
+
+		@Override
+		public Gradient createLinearGradient(float x0, float y0, float x1,
+				float y1, int[] colors, float[] positions) {
+			return null;
+		}
+
+		@Override
+		public Gradient createRadialGradient(float x, float y, float r,
+				int[] colors, float[] positions) {
+			return null;
+		}
+
+		@Override
+		public Font createFont(String name, Style style, float size) {
+			return null;
+		}
+
+		@Override
+		public TextLayout layoutText(String text, TextFormat format) {
+			return null;
+		}
+
+		@Override
+		public int screenHeight() {
+			return 0;
+		}
+
+		@Override
+		public int screenWidth() {
+			return 0;
+		}
+
+		@Override
+		public int width() {
+			return 0;
+		}
+
+		@Override
+		public int height() {
+			return 0;
+		}
+
+		@Override
+		public void setSize(int width, int height) {}
+
+		@Override
+		public float scaleFactor() {
+			return 0;
+		}
+
+		@Override
+		public GL20 gl20() {
+			return null;
+		}
+
+		@Override
+		public GLContext ctx() {
+			return null;
+		}
+
+	}
+	
+	public static class MockCanvas implements CanvasImage, Canvas {
+
+		@Override
+		public float width() {
+			return 0;
+		}
+
+		@Override
+		public float height() {
+			return 0;
+		}
+
+		@Override
+		public boolean isReady() {
+			return false;
+		}
+
+		@Override
+		public void addCallback(ResourceCallback<? super Image> callback) {}
+
+		@Override
+		public Region subImage(float x, float y, float width, float height) {
+			return null;
+		}
+
+		@Override
+		public Pattern toPattern() {
+			return null;
+		}
+
+		@Override
+		public void getRgb(int startX, int startY, int width, int height,
+				int[] rgbArray, int offset, int scanSize) {	}
+
+		@Override
+		public Image transform(BitmapTransformer xform) {
+			return null;
+		}
+
+		@Override
+		public int ensureTexture(boolean repeatX, boolean repeatY) {
+			return 0;
+		}
+
+		@Override
+		public void clearTexture() {}
+
+		@Override
+		public void glTexImage2D(GL20 gl, int target, int level,
+				int internalformat, int format, int type) {}
+
+		@Override
+		public void glTexSubImage2D(GL20 gl, int target, int level,
+				int xOffset, int yOffset, int format, int type) {}
+
+		@Override
+		public Canvas canvas() {
+			return this;
+		}
+
+		@Override
+		public Canvas clear() {
+			return this;
+		}
+
+		@Override
+		public Canvas clip(Path clipPath) {
+			return this;
+		}
+
+		@Override
+		public Path createPath() {
+			return new MockPath();
+		}
+
+		@Override
+		public Canvas drawImage(Image image, float dx, float dy) {
+			return this;
+		}
+
+		@Override
+		public Canvas drawImageCentered(Image image, float dx, float dy) {
+			return this;
+		}
+
+		@Override
+		public Canvas drawImage(Image image, float dx, float dy, float dw,
+				float dh) {
+			return this;
+		}
+
+		@Override
+		public Canvas drawImage(Image image, float dx, float dy, float dw,
+				float dh, float sx, float sy, float sw, float sh) {
+			return this;
+		}
+
+		@Override
+		public Canvas drawLine(float x0, float y0, float x1, float y1) {
+			return this;
+		}
+
+		@Override
+		public Canvas drawPoint(float x, float y) {
+			return this;
+		}
+
+		@Override
+		public Canvas drawText(String text, float x, float y) {
+			return this;
+		}
+
+		@Override
+		public Canvas fillCircle(float x, float y, float radius) {
+			return this;
+		}
+
+		@Override
+		public Canvas fillPath(Path path) {
+			return this;
+		}
+
+		@Override
+		public Canvas fillRect(float x, float y, float width, float height) {
+			return this;
+		}
+
+		@Override
+		public Canvas fillRoundRect(float x, float y, float width,
+				float height, float radius) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Canvas fillText(TextLayout text, float x, float y) {
+			return this;
+		}
+
+		@Override
+		public Canvas restore() {
+			return this;
+		}
+
+		@Override
+		public Canvas rotate(float radians) {
+			return this;
+		}
+
+		@Override
+		public Canvas save() {
+			return this;
+		}
+
+		@Override
+		public Canvas scale(float x, float y) {
+			return this;
+		}
+
+		@Override
+		public Canvas setAlpha(float alpha) {
+			return this;
+		}
+
+		@Override
+		public Canvas setCompositeOperation(Composite composite) {
+			return this;
+		}
+
+		@Override
+		public Canvas setFillColor(int color) {
+			return this;
+		}
+
+		@Override
+		public Canvas setFillGradient(Gradient gradient) {
+			return this;
+		}
+
+		@Override
+		public Canvas setFillPattern(Pattern pattern) {
+			return this;
+		}
+
+		@Override
+		public Canvas setLineCap(LineCap cap) {
+			return this;
+		}
+
+		@Override
+		public Canvas setLineJoin(LineJoin join) {
+			return this;
+		}
+
+		@Override
+		public Canvas setMiterLimit(float miter) {
+			return this;
+		}
+
+		@Override
+		public Canvas setStrokeColor(int color) {
+			return this;
+		}
+
+		@Override
+		public Canvas setStrokeWidth(float strokeWidth) {
+			return this;
+		}
+
+		@Override
+		public Canvas setTransform(float m11, float m12, float m21, float m22,
+				float dx, float dy) {
+			return this;
+		}
+
+		@Override
+		public Canvas strokeCircle(float x, float y, float radius) {
+			return this;
+		}
+
+		@Override
+		public Canvas strokePath(Path path) {
+			return this;
+		}
+
+		@Override
+		public Canvas strokeRect(float x, float y, float width, float height) {
+			return this;
+		}
+
+		@Override
+		public Canvas strokeRoundRect(float x, float y, float width,
+				float height, float radius) {
+			return this;
+		}
+
+		@Override
+		public Canvas strokeText(TextLayout text, float x, float y) {
+			return this;
+		}
+
+		@Override
+		public Canvas transform(float m11, float m12, float m21, float m22,
+				float dx, float dy) {
+			return this;
+		}
+
+		@Override
+		public Canvas translate(float x, float y) {
+			return this;
+		}
+		
+	}
+
+	public static class MockLayer implements ImageLayer, GroupLayer, Clipped, ImmediateLayer, playn.core.ImmediateLayer.Clipped, SurfaceLayer {
+
+		@Override
+		public Layer get(int index) {
+			return null;
+		}
+
+		@Override
+		public void add(Layer layer) {}
+
+		@Override
+		public void addAt(Layer layer, float tx, float ty) {}
+
+		@Override
+		public void remove(Layer layer) {}
+
+		@Override
+		public void clear() {}
+
+		@Override
+		public int size() {
+			return 0;
+		}
+
+		@Override
+		public void destroy() {}
+
+		@Override
+		public boolean destroyed() {
+			return false;
+		}
+
+		@Override
+		public GroupLayer parent() {
+			return null;
+		}
+
+		@Override
+		public Transform transform() {
+			return new MockTransform();
+		}
+
+		@Override
+		public boolean visible() {
+			return false;
+		}
+
+		@Override
+		public void setVisible(boolean visible) {}
+
+		@Override
+		public boolean interactive() {
+			return false;
+		}
+
+		@Override
+		public void setInteractive(boolean interactive) {}
+
+		@Override
+		public float alpha() {
+			return 0;
+		}
+
+		@Override
+		public void setAlpha(float alpha) {}
+
+		@Override
+		public float originX() {
+			return 0;
+		}
+
+		@Override
+		public float originY() {
+			return 0;
+		}
+
+		@Override
+		public void setOrigin(float x, float y) {}
+
+		@Override
+		public float depth() {
+			return 0;
+		}
+
+		@Override
+		public void setDepth(float depth) {}
+
+		@Override
+		public void setTranslation(float x, float y) {}
+
+		@Override
+		public void setScale(float x) {}
+
+		@Override
+		public void setScale(float x, float y) {}
+
+		@Override
+		public void setRotation(float angle) {}
+
+		@Override
+		public Layer hitTest(Point p) {
+			return null;
+		}
+
+		@Override
+		public Layer hitTestDefault(Point p) {
+			return null;
+		}
+
+		@Override
+		public void setHitTester(HitTester tester) {}
+
+		@Override
+		public Connection addListener(Listener pointerListener) {
+			return null;
+		}
+
+		@Override
+		public Connection addListener(LayerListener touchListener) {
+			return null;
+		}
+
+		@Override
+		public Connection addListener(
+				playn.core.Touch.LayerListener touchListener) {
+			return null;
+		}
+
+		@Override
+		public void setShader(GLShader shader) {}
+
+		@Override
+		public float width() {
+			return 0;
+		}
+
+		@Override
+		public float height() {
+			return 0;
+		}
+
+		@Override
+		public float scaledWidth() {
+			return 0;
+		}
+
+		@Override
+		public float scaledHeight() {
+			return 0;
+		}
+
+		@Override
+		public void setSize(float width, float height) {}
+
+		@Override
+		public void setWidth(float width) {}
+
+		@Override
+		public void setHeight(float height) {}
+
+		@Override
+		public Renderer renderer() {
+			return null;
+		}
+
+		@Override
+		public Image image() {
+			return null;
+		}
+
+		@Override
+		public void setImage(Image image) {}
+
+		@Override
+		public void setRepeatX(boolean repeat) {}
+
+		@Override
+		public void setRepeatY(boolean repeat) {}
+
+		@Override
+		public void clearHeight() {}
+
+		@Override
+		public void clearWidth() {}
+
+		@Override
+		public Surface surface() {
+			return null;
+		}
+	}
+	
+	public static class StdoutLog implements Log {
+
+		@Override
+		public void error(String msg, Throwable e) {
+			error(msg);
+			e.printStackTrace();
+		}
+
+		@Override
+		public void error(String msg) {
+			System.out.println("ERROR: " + msg);
+		}
+
+		@Override
+		public void info(String msg) {
+			System.out.println("info: " + msg);
+
+		}
+
+		@Override
+		public void info(String msg, Throwable e) {
+			info(msg);
+			e.printStackTrace();
+		}
+
+		@Override
+		public void debug(String msg) {
+			System.out.println("debug: " + msg);
+		}
+
+		@Override
+		public void debug(String msg, Throwable e) {
+			debug(msg);
+			e.printStackTrace();
+		}
+
+		@Override
+		public void warn(String msg) {
+			System.out.println("Warn: " + msg);
+		}
+
+		@Override
+		public void warn(String msg, Throwable e) {
+			warn(msg);
+			e.printStackTrace();
+		}
+	}
+}

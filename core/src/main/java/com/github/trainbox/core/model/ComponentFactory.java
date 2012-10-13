@@ -40,14 +40,14 @@ public final class ComponentFactory {
 				});
 	}};
 	
-	/**
-	 * Should fix "dup dup || cat" into "(dup dup)||cat" and
-	 * "dup dup dup" into "((dup dup) dup)" and so on.
-	 */
-	private static String fixAsoc(String desc) {
-		return "";
-	}
-	
+//	/**
+//	 * Should fix "dup dup || cat" into "(dup dup)||cat" and
+//	 * "dup dup dup" into "((dup dup) dup)" and so on.
+//	 */
+//	private static String fixAsoc(String desc) {
+//		return "";
+//	}
+//	
 	/**
 	 * Parser with the following assertions:
 	 * - Everything is parenthesized (no assoc)
