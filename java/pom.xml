@@ -41,7 +41,7 @@
         <executions>
           <execution>
             <id>unpacknatives</id>
-<!--            <phase>test-compile</phase> -->
+            <phase>test-compile</phase>
             <goals><goal>copy</goal></goals>
           </execution>
         </executions>

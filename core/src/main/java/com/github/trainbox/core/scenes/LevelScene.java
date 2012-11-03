@@ -23,6 +23,10 @@ import playn.core.TextFormat.Alignment;
 import pythagoras.f.Point;
 
 import com.github.trainbox.core.TrainBox;
+import com.github.trainbox.core.gui.UIComponentButton;
+import com.github.trainbox.core.gui.UIModalDialogue;
+import com.github.trainbox.core.gui.UIModalPopup;
+import com.github.trainbox.core.gui.UIPallet;
 import com.github.trainbox.core.model.Level;
 import com.github.trainbox.core.uimodel.ComponentHelper;
 import com.github.trainbox.core.uimodel.LevelFinishedListener;
@@ -312,22 +316,21 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 
 	private void initLevelStatus() {
 
-//		// initialise the next button image layer
-//		Image nextButtonImage = assets().getImage("images/pngs/nextButton.png");
-//		final Layer nextButtonLeveLStatusImageLayer = graphics()
-//				.createImageLayer(nextButtonImage);
-////		levelStatusLayer.add(nextButtonLeveLStatusImageLayer);
-//		nextButtonLeveLStatusImageLayer.setTranslation(680, 520);
-//		nextButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
-//			@Override
-//			public void onPointerStart(Event event) {
+		// initialise the next button image layer
+		Image nextButtonImage = assets().getImage("images/pngs/nextButton.png");
+		final Layer nextButtonLeveLStatusImageLayer = graphics()
+				.createImageLayer(nextButtonImage);
+//		levelStatusLayer.add(nextButtonLeveLStatusImageLayer);		
+		nextButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
+			@Override
+			public void onPointerStart(Event event) {
 //				levelFailedBlurbImageLayer.setVisible(false);
 //				levelCompletedBlurbImageLayer.setVisible(false);
 //				levelStatusLayer.setVisible(false);
 //				levelStatusText.setVisible(false);
-//				trainBox.setLevel(mLevel.getLevel().levelNumber + 1);
-//			}
-//		});
+				trainBox.setLevel(mLevel.getLevel().levelNumber + 1);
+			}
+		});
 
 		// initialise the retry button image layer
 		// TODO create an image called retryButton and replace the text below
@@ -373,14 +376,17 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 						: "Your solution used " + (used - needed)
 								+ " more\ncomponents than needed";
 				
-				UIModalMessage levelCompleteDialogue = new UIModalMessage(graphics().rootLayer(), "Level Complete!", comment);
+				UIModalPopup levelCompleteDialogue = 
+						new UIModalDialogue("Level Complete!", comment);
+				
+				levelCompleteDialogue.addLayer(nextButtonLeveLStatusImageLayer);
 				
 				levelCompleteDialogue.setVisible(true);
 				log().debug("Level Complete!");
 
 //				levelFailedBlurbImageLayer.setVisible(false);
 //				levelCompletedBlurbImageLayer.setVisible(true);
-//				nextButtonLeveLStatusImageLayer.setVisible(true);
+				nextButtonLeveLStatusImageLayer.setVisible(true);
 //				retryButtonLeveLStatusImageLayer.setVisible(true);
 //				levelStatusText.setVisible(true);
 //

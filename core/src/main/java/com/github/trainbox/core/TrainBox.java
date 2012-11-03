@@ -18,11 +18,7 @@ import com.github.trainbox.core.scenes.StartScene;
 import com.github.trainbox.core.util.LevelTracker;
 
 public class TrainBox implements Game{
-	Scene demoScene; 
-	Scene moveScene;
-	Scene startScene;
-	Scene levelSelectScene;
-	
+
 	AssetWatcher watcher;
 	
 	public final static int WIDTH = 1280;
@@ -142,21 +138,20 @@ public class TrainBox implements Game{
 	}
 	
 	public Scene getDemoScene() {
-		if (demoScene == null)
-			demoScene = new DemoScene(this);
+		Scene demoScene;
+		demoScene = new DemoScene(this);
 		return demoScene;
 	}
 	
 	public Scene getStartScene() {
-		if (startScene == null)
-			startScene = new StartScene(this);
+		Scene startScene;
+		startScene = new StartScene(this);
 		return startScene;
 	}
 
 	public Scene getLevelSelectScene() {
 		// We need to create a new scene here, to update our progress
-		levelSelectScene = new LevelSelectScene(this);
-		return levelSelectScene;
+		return new LevelSelectScene(this);
 	}
 	
 	public void setScene(Scene scene) {
@@ -171,6 +166,7 @@ public class TrainBox implements Game{
 	
 	public void setLevel(int index){
 		LevelTracker.updateLevel(index);
+		setScene(new LoadingScene(this));
 		setScene(new LevelScene(this,Level.levels.get(index)));
 		currentLevel = index;
 		PlayN.log().debug("Setting Level "+index);
