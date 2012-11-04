@@ -38,8 +38,8 @@ public class StartScene implements Scene, Keyboard.Listener, Pointer.Listener {
 
 	public StartScene(final TrainBox trainBox) {
 		oxfordLogoImageLayer.setTranslation(
-				width - oxfordLogoImageLayer.width() - 10, height
-						- oxfordLogoImageLayer.height() - 38);
+				width - oxfordLogoImageLayer.width() - 20, height
+						- oxfordLogoImageLayer.height() - 20);
 
 		this.trainBox = trainBox;
 		Canvas canvas = bgImage.canvas();
@@ -47,7 +47,7 @@ public class StartScene implements Scene, Keyboard.Listener, Pointer.Listener {
 		canvas.fillRect(0, 0, width, height);
 		final Image backgroundImage = assets().getImage(
 				"images/pngs/startPage.png");
-		canvas.drawImage(backgroundImage, 0, 0);
+		canvas.drawImage(backgroundImage, (width-backgroundImage.width())/2, 0);
 
 		aboutLayer = graphics().createGroupLayer();
 		aboutLayer.setTranslation(width / 20 + 40, height / 20);
@@ -64,124 +64,79 @@ public class StartScene implements Scene, Keyboard.Listener, Pointer.Listener {
 				.createImageLayer(aboutBlurBackButtonImage);
 		aboutLayer.add(aboutBlurBackButtonImageLayer);
 		aboutBlurBackButtonImageLayer.setTranslation(680, 520);
-		aboutBlurBackButtonImageLayer.addListener(new Pointer.Listener() {
+		aboutBlurBackButtonImageLayer.addListener(new Pointer.Adapter() {
 			@Override
 			public void onPointerStart(playn.core.Pointer.Event event) {
 				aboutLayer.setVisible(false);
 			}
-
-			@Override
-			public void onPointerEnd(playn.core.Pointer.Event event) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onPointerDrag(playn.core.Pointer.Event event) {
-				// TODO Auto-generated method stub
-
-			}
 		});
 
+		//
+		//	IT'S MENUING TIME.
+		//
+		
+		// Menu goes in the middle.
 		menuLayer = graphics().createGroupLayer();
-		menuLayer.setTranslation(width / 5, height / 4 + 40);
+		menuLayer.setTranslation(width / 2, (height + backgroundImage.height())  / 2);
+		
+		// Wibbly black thing.
 		final Image menuBackgoundImage = assets().getImage(
 				"images/pngs/menuBackground.png");
 		final ImageLayer menuBackgoundImageLayer = graphics().createImageLayer(
 				menuBackgoundImage);
+		menuBackgoundImageLayer.setTranslation(-menuBackgoundImage.width()/2, -menuBackgoundImage.height()/2);
 		menuLayer.add(menuBackgoundImageLayer);
 
+		// About button.
 		final Image aboutButtonImage = assets().getImage(
 				"images/pngs/aboutButton.png");
 		final ImageLayer aboutButtonImageLayer = graphics().createImageLayer(
 				aboutButtonImage);
 		menuLayer.add(aboutButtonImageLayer);
-		aboutButtonImageLayer.setTranslation(205, 240);
-		aboutButtonImageLayer.addListener(new Pointer.Listener() {
+		aboutButtonImageLayer.setTranslation(-95, 22);
+		aboutButtonImageLayer.addListener(new Pointer.Adapter() {
 			@Override
 			public void onPointerStart(playn.core.Pointer.Event event) {
 				aboutLayer.setVisible(true);
 			}
-
-			@Override
-			public void onPointerEnd(playn.core.Pointer.Event event) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onPointerDrag(playn.core.Pointer.Event event) {
-				// TODO Auto-generated method stub
-
-			}
 		});
 
+		
+		// Guide
 		final Image demoButtonImage = assets().getImage(
 				"images/pngs/demoButton.png");
 		final ImageLayer demoButtonImageLayer = graphics().createImageLayer(
 				demoButtonImage);
 		menuLayer.add(demoButtonImageLayer);
-		demoButtonImageLayer.setTranslation(110, 80);
-		demoButtonImageLayer.addListener(new Pointer.Listener() {
-
-//			Image demoButtonPressedImage = assets().getImage(
-//					"images/pngs/demoButtonPressed.png");
-
+		demoButtonImageLayer.setTranslation(-193, -137);
+		demoButtonImageLayer.addListener(new Pointer.Adapter() {
 			@Override
 			public void onPointerStart(playn.core.Pointer.Event event) {
-				// demoButtonImageLayer.setImage(demoButtonPressedImage);
 				trainBox.clearScene();
 				trainBox.setScene(trainBox.getDemoScene());
 			}
-
-			@Override
-			public void onPointerEnd(playn.core.Pointer.Event event) {
-				// demoButtonImageLayer.setImage(demoButtonImage);
-			}
-
-			@Override
-			public void onPointerDrag(playn.core.Pointer.Event event) {
-				// TODO Auto-generated method stub
-
-			}
-
 		});
 
+		
+		// LETS PLAY!
 		final Image playButtonImage = assets().getImage(
 				"images/pngs/playButton.png");
 		final ImageLayer playButtonImageLayer = graphics().createImageLayer(
 				playButtonImage);
 		menuLayer.add(playButtonImageLayer);
-		playButtonImageLayer.setTranslation(280, 50);
-		playButtonImageLayer.addListener(new Pointer.Listener() {
-
-			Image playButtonPressedImage = assets().getImage(
-					"images/pngs/playButtonPressed.png");
-
+		playButtonImageLayer.setTranslation(-23, -167);
+		playButtonImageLayer.addListener(new Pointer.Adapter() {
 			@Override
 			public void onPointerStart(playn.core.Pointer.Event event) {
-				playButtonImageLayer.setImage(playButtonPressedImage);
 				trainBox.setScene(trainBox.getLevelSelectScene());
 			}
-
-			@Override
-			public void onPointerEnd(playn.core.Pointer.Event event) {
-				playButtonImageLayer.setImage(playButtonPressedImage);
-			}
-
-			@Override
-			public void onPointerDrag(playn.core.Pointer.Event event) {
-			}
-
 		});
 
 		bgLayer = graphics().createImageLayer(bgImage);
-
 	}
 
 	@Override
 	public void onAttach() {
-		graphics().rootLayer().setScale(1, 1);
 		graphics().rootLayer().add(bgLayer);
 		graphics().rootLayer().add(menuLayer);
 		graphics().rootLayer().add(aboutLayer);
@@ -196,54 +151,35 @@ public class StartScene implements Scene, Keyboard.Listener, Pointer.Listener {
 		graphics().rootLayer().remove(menuLayer);
 		graphics().rootLayer().remove(aboutLayer);
 		graphics().rootLayer().remove(oxfordLogoImageLayer);
-
 		pointer().setListener(null);
 		keyboard().setListener(null);
 	}
 
 	@Override
 	public void onPointerStart(playn.core.Pointer.Event event) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onPointerEnd(playn.core.Pointer.Event event) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onPointerDrag(playn.core.Pointer.Event event) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onKeyDown(Event event) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onKeyTyped(TypedEvent event) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onKeyUp(Event event) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void update(float delta) {
-		// TODO Auto-generated method stub
-		
 	}
-
-	// graphics().rootLayer().setScale(-1, 1);
-	// graphics().rootLayer().setTranslation(graphics().width(), 0);
-
 }

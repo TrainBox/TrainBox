@@ -32,14 +32,14 @@ public class TrainBox implements Game{
 		setScene(new LoadingScene(this));
 		if (PlayN.platformType() == Type.ANDROID){
 			graphics().setSize(graphics().screenWidth(), graphics().screenHeight());
-			// Keep the same aspect ratio.
+			
+			// Keep the same aspect ratio, and scale to fit screen.
 			float sx = graphics().screenWidth() / (float) WIDTH;
 			float sy = graphics().screenHeight() / (float) HEIGHT;
-
-			// Fit to the available screen without stretching.
 			graphics().rootLayer().setScale(Math.min(sx, sy));
+			
 		} else {
-			graphics().setSize(1024, 640); // this changes the size of the main window
+			graphics().setSize(WIDTH, HEIGHT);
 		}
 		
 		
@@ -109,15 +109,13 @@ public class TrainBox implements Game{
 		watcher.add(assets().getImage("images/pngs/retryButton.png"));
 		watcher.add(assets().getImage("images/pngs/splitComponentButtonImage.png"));
 		watcher.add(assets().getImage("images/pngs/splitComponentButtonImagePressed.png"));
-		watcher.add(assets().getImage("images/pngs/standardBackground.png"));
 		watcher.add(assets().getImage("images/pngs/startPage.png"));
-		watcher.add(assets().getImage("images/pngs/trains.png"));
-		watcher.add(assets().getImage("images/pngs/watermelonTr.png"));
 		watcher.add(assets().getImage("images/basicCarriage.png"));
 		watcher.add(assets().getImage("images/emptyTrain.png"));
 		watcher.add(assets().getImage("images/finishChecker.png"));
 		watcher.add(assets().getImage("images/fullTrain.png"));
 		watcher.add(assets().getImage("images/red_train.png"));
+		watcher.add(assets().getImage("images/CompSci_logo_portraitR_RGB.jpg"));
 	}
 	
 	@Override
