@@ -100,8 +100,6 @@ public class TrainBox implements Game{
 		watcher.add(assets().getImage("images/pngs/inaccessibleLevelButton.png"));
 		watcher.add(assets().getImage("images/pngs/levelButtonActive.png"));
 		watcher.add(assets().getImage("images/pngs/levelButton.png"));
-		watcher.add(assets().getImage("images/pngs/levelCompleteBlurb.png"));
-		watcher.add(assets().getImage("images/pngs/levelFailedBlurb.png"));
 		watcher.add(assets().getImage("images/pngs/menuBackground.png"));
 		watcher.add(assets().getImage("images/pngs/menuButton.png"));
 		watcher.add(assets().getImage("images/pngs/nextButton.png"));
@@ -154,6 +152,12 @@ public class TrainBox implements Game{
 		return new LevelSelectScene(this);
 	}
 	
+	public void clearScene(){
+		mScene.onDetach();
+		mScene = new LoadingScene(this);
+		mScene.onAttach();		
+	}
+	
 	public void setScene(Scene scene) {
 		mScene.onDetach();
 		mScene = scene;
@@ -166,7 +170,7 @@ public class TrainBox implements Game{
 	
 	public void setLevel(int index){
 		LevelTracker.updateLevel(index);
-		setScene(new LoadingScene(this));
+		clearScene();
 		setScene(new LevelScene(this,Level.levels.get(index)));
 		currentLevel = index;
 		PlayN.log().debug("Setting Level "+index);

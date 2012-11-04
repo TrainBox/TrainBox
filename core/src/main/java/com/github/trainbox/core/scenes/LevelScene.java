@@ -55,7 +55,7 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 	private ToolManager toolMan;
 	int currPauseGoButtonImageIndex = 0;
 
-//	GroupLayer levelStatusLayer;
+	GroupLayer levelStatusLayer = graphics().createGroupLayer();
 	GroupLayer levelControlLayer;
 	ImageLayer pauseButtonImageLayer;
 	GroupLayer levelPopupLayer;
@@ -122,12 +122,14 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 		graphics().rootLayer().add(levelControlLayer);
 		graphics().rootLayer().add(pauseButtonImageLayer);
 		graphics().rootLayer().add(levelPopupLayer);
+		graphics().rootLayer().add(levelStatusLayer);
+
 		keyboard().setListener(this);
 	}
 
 	@Override
 	public void onDetach() {
-		// This helps us avoid a memory leak
+		graphics().rootLayer().remove(levelStatusLayer);
 		graphics().rootLayer().remove(mBgLayer);
 		graphics().rootLayer().remove(titleLayer);
 		graphics().rootLayer().remove(mLevel.layer());
@@ -180,6 +182,7 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 			@Override
 			public void onPointerStart(Event event) {
 				setPaused(!mLevel.paused());
+				trainBox.clearScene();
 				trainBox.setScene(trainBox.getLevelSelectScene());
 			}
 		});
@@ -320,47 +323,12 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 		Image nextButtonImage = assets().getImage("images/pngs/nextButton.png");
 		final Layer nextButtonLeveLStatusImageLayer = graphics()
 				.createImageLayer(nextButtonImage);
-//		levelStatusLayer.add(nextButtonLeveLStatusImageLayer);		
 		nextButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
 			@Override
 			public void onPointerStart(Event event) {
-//				levelFailedBlurbImageLayer.setVisible(false);
-//				levelCompletedBlurbImageLayer.setVisible(false);
-//				levelStatusLayer.setVisible(false);
-//				levelStatusText.setVisible(false);
 				trainBox.setLevel(mLevel.getLevel().levelNumber + 1);
 			}
 		});
-
-		// initialise the retry button image layer
-		// TODO create an image called retryButton and replace the text below
-		// VVVV
-//		Image retryButtonImage = assets().getImage(
-//				"images/pngs/retryButton.png");
-//		final Layer retryButtonLeveLStatusImageLayer = graphics()
-//				.createImageLayer(retryButtonImage);
-//		retryButtonLeveLStatusImageLayer.setScale(0.95f, 0.95f); // to fix the
-//																	// fact that
-//																	// the retry
-//																	// button is
-//																	// slightly
-//																	// larger
-//																	// than the
-//																	// next
-//																	// one...
-//		levelStatusLayer.add(retryButtonLeveLStatusImageLayer);
-//		retryButtonLeveLStatusImageLayer.setTranslation(550, 520);
-//		retryButtonLeveLStatusImageLayer.addListener(new Pointer.Adapter() {
-//			@Override
-//			public void onPointerStart(Event event) {
-//				levelFailedBlurbImageLayer.setVisible(false);
-//				levelCompletedBlurbImageLayer.setVisible(false);
-//				levelStatusText.setVisible(false);
-//				levelStatusLayer.setVisible(false);
-//				resetLevel();
-//				// trainBox.setLevel(mLevel.getLevel().levelNumber);
-//			}
-//		});
 
 		mLevel.setListener(new LevelFinishedListener() {
 			@Override
@@ -376,22 +344,17 @@ public class LevelScene implements Scene, Pointer.Listener, Keyboard.Listener {
 						: "Your solution used " + (used - needed)
 								+ " more\ncomponents than needed";
 				
+				levelStatusLayer.setVisible(true);
+				
 				UIModalPopup levelCompleteDialogue = 
-						new UIModalDialogue("Level Complete!", comment);
+						new UIModalDialogue(levelStatusLayer, "Level Complete!", comment);
 				
 				levelCompleteDialogue.addLayer(nextButtonLeveLStatusImageLayer);
 				
 				levelCompleteDialogue.setVisible(true);
 				log().debug("Level Complete!");
 
-//				levelFailedBlurbImageLayer.setVisible(false);
-//				levelCompletedBlurbImageLayer.setVisible(true);
 				nextButtonLeveLStatusImageLayer.setVisible(true);
-//				retryButtonLeveLStatusImageLayer.setVisible(true);
-//				levelStatusText.setVisible(true);
-//
-//				levelStatusText.setImage(createCommentImage(comment));
-//				levelStatusText.setTranslation(100, 425);
 				trainBox.levelComplete();
 			}
 

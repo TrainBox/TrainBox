@@ -13,11 +13,9 @@ import playn.core.TextLayout;
 
 public class UIModalDialogue extends UIModalPopup {
 	
-	static GroupLayer modalMessage = graphics().createGroupLayer();
-
-	public UIModalDialogue(String title, String message, UIButton... buttons) {
+	public UIModalDialogue(GroupLayer root, String title, String message, UIButton... buttons) {
 		
-		super(modalMessage);
+		super(root);
 		addText(title, message);
 		addButtons(buttons);
 		
@@ -46,7 +44,7 @@ public class UIModalDialogue extends UIModalPopup {
 		ImageLayer textLayer = graphics().createImageLayer();
 		textLayer.setImage(textImage);
 		
-		modalMessage.add(textLayer);
+		modal.add(textLayer);
 	}
 
 }

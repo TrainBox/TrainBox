@@ -149,6 +149,7 @@ public class DemoScene implements Scene {
 	
 	private void leaveDemo() {
 		setPage(0);
+		trainBox.clearScene();
 		trainBox.setScene(trainBox.getStartScene());
 	}
 	
