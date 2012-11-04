@@ -46,11 +46,16 @@ public class DemoScene implements Scene {
     ImageLayer doneButtonImageLayer;
     
 	public DemoScene(final TrainBox trainBox) {
+		
 		this.trainBox = trainBox;
         bgLayer = graphics().createImageLayer(bgImage);
 		Canvas canvas = bgImage.canvas();
-        final Image backgroundImage = assets().getImage("images/pngs/startPage.png");
-		canvas.drawImage(backgroundImage, 0, 0);
+		canvas.setFillColor(0xffe9b96e);
+		canvas.fillRect(0, 0, width, height);
+		final Image backgroundImage = assets().getImage(
+				"images/pngs/startPage.png");
+		canvas.drawImage(backgroundImage, (width-backgroundImage.width())/2, 0);
+
 		
 		// Create the demoLayer that contains the demo pages
         demoLayer = graphics().createGroupLayer();
